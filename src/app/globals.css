@@ -2,4 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes move {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-400px);
+    opacity: 0;
+  }
+}
 
+.movement {
+  animation: move 8.5s 1s ease-in-out infinite;
+}

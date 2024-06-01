@@ -1,26 +1,13 @@
 import prisma from "@/lib/Prismadb";
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
 
 export const POST = async (req: NextRequest) => {
   try {
     const body = await req.json();
-    const { name, password, email } = body;
+    const { firstName, lastName, phoneNumber, password, email } = body;
 
-    if (!name || !password || !email) {
+    if (!firstName || !lastName || !phoneNumber || !password || !email) {
       return new NextResponse("Missing Fields", { status: 400 });
-    }
-
-    // Add validation rule for username
-    const usernamePattern = /^(?=.*[a-zA-Z])(?=.*[#_.-])[a-zA-Z0-9@_.-]{3,}$/;
-    if (!usernamePattern.test(name)) {
-      return NextResponse.json(
-        {
-          message:
-            "Invalid Username, Please it must contain uppercase, lowercase letters, @, _, or -",
-        },
-        { status: 400 }
-      );
     }
 
     // Add validation rule for password
@@ -37,7 +24,7 @@ export const POST = async (req: NextRequest) => {
     }
 
     const userExist = await prisma.user.findUnique({
-      where: { email },
+      where: { phoneNumber },
     });
 
     if (userExist) {
@@ -51,7 +38,9 @@ export const POST = async (req: NextRequest) => {
 
     const newUser = await prisma.user.create({
       data: {
-        name,
+        firstName,
+        lastName,
+        phoneNumber,
         email,
         password,
       },
@@ -76,10 +65,11 @@ export const GET = async (req: NextRequest) => {
     const allUsers = await prisma.user.findMany({
       select: {
         id: true,
-        name: true,
+        firstName: true,
+        lastName: true,
         email: true,
         emailVerified: true,
-        image: true,
+        phoneNumber: true,
         password: false,
       },
     });
