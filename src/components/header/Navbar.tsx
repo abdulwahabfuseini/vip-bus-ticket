@@ -3,16 +3,29 @@
 import { Navigate } from "@/assets/Navigation";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MobileNav from "./MobileNav";
 import { useSession } from "next-auth/react";
 import Profile from "./Profile";
 
 const Navbar = () => {
   const { data: session } = useSession();
+  const [sticky, setSticky] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      return window.scrollY > 50 ? setSticky(true) : setSticky(false);
+    });
+  });
 
   return (
-    <div className="w-full bg-white px-3 sm:px-4">
+    <div
+      className={`${
+        sticky
+          ? "fixed  top-0 shadow-indigo-500/20  z-50 "
+          : "  "
+      }  px-3 sm:px-6 transition-all ease-in w-full bg-white`}
+    >
       <nav className="w-full max-w-7xl h-full mx-auto flex items-center justify-between">
         <div className="flex items-center gap-[4vw]">
           <Link href="/">

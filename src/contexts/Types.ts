@@ -16,3 +16,11 @@ export interface IUser {
   email?: string | null;
   image?: string | null;
 }
+
+
+export type FareProps = {
+   id?: number,
+   from: string,
+   arrival: string,
+   price: number
+}

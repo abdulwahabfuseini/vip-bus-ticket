@@ -11,7 +11,9 @@ const BusRoutes = () => {
   return (
     <div>
       <Navbar />
-      <Path />
+      <div className="py-4 sm:py-12">
+        <Path />
+      </div>
     </div>
   );
 };

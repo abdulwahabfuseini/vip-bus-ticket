@@ -4,7 +4,6 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -25,7 +24,7 @@ model User {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
-  accounts Account[]
+  accounts       Account[]
 }
 
 model Account {
@@ -45,4 +44,38 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+}
+
+model Regions {
+  id             String   @id @default(uuid()) @map("_id")
+  region_id      String
+  location       String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  routes         Routes[]
+  terminal       Terminal[]
+}
+
+model Routes {
+  id             String   @id @default(uuid()) @map("_id")
+  from           String
+  to             String
+  type           String
+  price          String
+  schedule       String
+  ticket         String
+  regionId       String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  region         Regions  @relation(fields: [regionId], references: [id])
+}
+
+model Terminal {
+  id             String  @id @default(uuid()) @map("_id")
+  region         Regions @relation(fields: [region_id], references: [id])
+  region_id      String
+  station        String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const Signin = () => {
   return (
-    <div className="w-full h-screen grid place-content-center place-items-center">
+    <div className="w-full h-screen px-4 grid place-content-center place-items-center">
       <Login />
     </div>
   );

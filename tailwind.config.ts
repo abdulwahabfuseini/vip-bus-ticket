@@ -7,7 +7,11 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        glass: "rgba(255, 255, 255, 0.5)",
+      },
+    },
   },
   plugins: [require("@shrutibalasa/tailwind-grid-auto-fit")],
 };

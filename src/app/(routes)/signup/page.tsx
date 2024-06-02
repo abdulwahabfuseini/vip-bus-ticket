@@ -1,4 +1,3 @@
-import Banner from "@/components/accounts/HeadLogo";
 import Register from "@/components/accounts/register/Register";
 import type { Metadata } from "next";
 
@@ -9,7 +8,7 @@ export const metadata: Metadata = {
 
 const Signup = () => {
   return (
-    <div className="w-full h-screen grid place-content-center place-items-center">
+    <div className="w-full h-screen px-4 grid place-content-center place-items-center">
        <Register />
     </div>
   );
