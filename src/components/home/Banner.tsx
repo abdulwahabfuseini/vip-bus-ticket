@@ -17,19 +17,18 @@ const Banner = () => {
         />
         <div className="w-full bg-gray-800 px-3  absolute left-0 right-0 bg-opacity-70 h-72  md:h-96 text-center">
           <div className="grid place-content-center text-white place-items-center w-full h-full">
-            <h1
-              className="text-2xl sm:text-4xl font-mono lg:text-5xl sm:py-6 capitalize h-[12vh] sm:h-[11vh] font-semibold"
-              
-            >
+            <h1 className="text-2xl sm:text-4xl font-mono lg:text-5xl sm:py-6 capitalize h-[12vh] sm:h-[11vh] font-semibold">
               <Typewriter
                 words={[
                   "Plan Your Trip, Book Your Ticket",
                   "Don't miss out! Book your ticket today!",
+                  "Explore new destinations, effortlessly",
+                  "Travel made easy, one ticket at a time",
+                  "book your tickets in minutes",
+                  "Find your perfect bus journey with ease",
                   "Hit the road with us",
                   "Travel Anywhere, Anytime",
                   "Book Now, Travel soon",
-                  "Explore new destinations, effortlessly",
-                  "Travel made easy, one ticket at a time",
                 ]}
                 loop={Infinity}
                 cursor

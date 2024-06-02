@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import TripResults from "./TripResults";
 import { DatePicker, Select } from "antd";
 import { Places } from "@/assets/Place";
+import Image from "next/image";
 
 const SearchTrip = () => {
   const [sticky, setSticky] = useState(false);
@@ -18,7 +19,11 @@ const SearchTrip = () => {
   }, []);
 
   return (
-    <div className={`${sticky ? "mx-4" : "w-full h-full px-4 pt-64 sm:pt-16 pb-6 relative"}`}>
+    <div
+      className={`${
+        sticky ? "mx-4" : "w-full h-full px-4 pt-64 sm:pt-16 pb-6 relative"
+      }`}
+    >
       <div
         className={`${
           sticky
@@ -26,45 +31,48 @@ const SearchTrip = () => {
             : "absolute left-0 right-0 w-full px-4 sm:px-6 -top-12 sm:-top-11"
         } sm:max-w-5xl sm:mx-auto`}
       >
-        <div className="grid bg-red-500 w-full gap-x-3 p-5 sm:px-[2vw] gap-y-3 sm:grid-cols-4 sm:py-4">
-          <Select
-            className="w-full bg-white rounded-sm"
-            defaultValue="Traveling From"
-            style={{ height: 52, fontSize: 40, textAlign: "left" }}
-            // onChange={handleChange}
-            dropdownStyle={{ fontSize: "16px" }}
-            bordered={false}
-          >
-            {Places.reverse().map((place, index) => (
-              <Select.Option key={index} value={place.from}>
-                <button className="text-base">{place.from}</button>
-              </Select.Option>
-            ))}
-          </Select>
-          <Select
-            className="w-full bg-white rounded-sm"
-            defaultValue="Traveling To"
-            style={{ height: 52, fontSize: 16, textAlign: "left" }}
-            // onChange={handleChange}
-            dropdownStyle={{ fontSize: "16px" }}
-            bordered={false}
-          >
-            {Places.map((place) => (
-              <Select.Option key={place.id} value={place.from}>
-                <button className="text-base">{place.from}</button>
-              </Select.Option>
-            ))}
-          </Select>
-          <DatePicker
-            className="w-full text-base rounded-sm"
-            style={{ height: 52, fontSize: 16, textAlign: "left" }}
-          />
-          <button
-            style={{ height: 52, fontSize: 18, textAlign: "center" }}
-            className="w-full text-black bg-white rounded-sm text-center font-semibold"
-          >
-            Search
-          </button>
+        <div className="relative w-fulll">
+          <Image src="/images/kente.png" alt="banner" fill objectFit="cover" />
+          <div className="grid w-full gap-x-3 bg-black bg-opacity-60 relative py-5 px-8 sm:px-[2vw] gap-y-3 sm:grid-cols-4 sm:py-4">
+            <Select
+              className="w-full bg-white rounded-sm"
+              defaultValue="Traveling From"
+              style={{ height: 52, fontSize: 40, textAlign: "left" }}
+              // onChange={handleChange}
+              dropdownStyle={{ fontSize: "16px" }}
+              bordered={false}
+            >
+              {Places.reverse().map((place, index) => (
+                <Select.Option key={index} value={place.from}>
+                  <button className="text-base">{place.from}</button>
+                </Select.Option>
+              ))}
+            </Select>
+            <Select
+              className="w-full bg-white rounded-sm"
+              defaultValue="Traveling To"
+              style={{ height: 52, fontSize: 16, textAlign: "left" }}
+              // onChange={handleChange}
+              dropdownStyle={{ fontSize: "16px" }}
+              bordered={false}
+            >
+              {Places.map((place) => (
+                <Select.Option key={place.id} value={place.from}>
+                  <button className="text-base">{place.from}</button>
+                </Select.Option>
+              ))}
+            </Select>
+            <DatePicker
+              className="w-full text-base rounded-sm"
+              style={{ height: 52, fontSize: 16, textAlign: "left" }}
+            />
+            <button
+              style={{ height: 52, fontSize: 18, textAlign: "center" }}
+              className="w-full bg-white rounded-sm text-center font-semibold"
+            >
+              Search
+            </button>
+          </div>
         </div>
       </div>
       <div className="max-w-7xl bg-red-400 px-4 mx-auto border-2">

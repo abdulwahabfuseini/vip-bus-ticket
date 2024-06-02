@@ -16,7 +16,7 @@ const FareLists = () => {
               <thead>
                 <tr className="bg-gray-100 border-b-2 border-grey">
                   <th className="px-4 uppercase border-2 text-sm text-darkgrey py-5">
-                    Traveling From
+                  Departure
                   </th>
                   <th className="px-4 uppercase border-2 text-sm text-darkgrey py-5">
                     Arrival
@@ -51,7 +51,7 @@ const FareLists = () => {
               <thead>
                 <tr className="bg-gray-100 border-b-2 border-grey">
                   <th className="px-4  text-center uppercase border-2 text-sm text-darkgrey py-5">
-                  Traveling From
+                Departure
                   </th>
                   <th className="px-4 uppercase border-2   text-center text-sm text-darkgrey py-5">
                     Arrival

@@ -8,7 +8,7 @@ import TripTable from "./TripTable";
 
 const Path = () => {
   return (
-    <div className="w-full max-w-7xl mx-auto sm:py-5 px-3 sm:px-5">
+    <div className="w-full max-w-7xl mx-auto sm:py-5 px-5">
       <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold font-mono">
         Available Routes
       </h1>
@@ -20,7 +20,7 @@ const Path = () => {
         <div>
           <h4 className="text-lg pb-2">Select Region / Station</h4>
           <Select
-            className="w-60 sm:w-60 rounded-lg"
+            className="w-full sm:w-60 rounded-lg"
             defaultValue="Pickup Location"
             style={{ height: 42, fontSize: 40, textAlign: "left" }}
             // onChange={handleChange}
