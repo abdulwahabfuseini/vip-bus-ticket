@@ -86,14 +86,14 @@ const TripTable = () => {
       </Modal>
       <div className=" sm:hidden">
         {Routes.map((route, index) => (
-          <div key={index} className="border-2 w-full h-72 mb-1.5 relative ">
+          <div key={index} className="border-2 w-full h-72 mb-1.5 relative overflow-hidden">
             <Image
               src="/images/kente3.png"
               alt="banner"
               fill
               objectFit="cover"
             />
-            <div className="  grid grid-cols-2 py-3 px-4 bg-opacity-70 text-white h-72 bg-black top-0  w-full absolute left-0">
+            <div className="  grid grid-cols-2 py-3 px-4 bg-opacity-85 text-white h-72 bg-black top-0  w-full absolute left-0">
               <div className=" text-2xl font-bold">
                 <h4 className=" ">{route?.departure} - </h4>
                 <h4 className=" ">{route?.arrival}</h4>

@@ -34,7 +34,7 @@ const SearchTrip = () => {
       >
         <div className=" w-fulll relative">
           <Image src="/images/kente3.png" alt="banner" fill objectFit="cover" />
-          <div className="grid  gap-x-3 bg-black bg-opacity-50 sm:bg-opacity-40 relative py-7 px-8 sm:px-[2vw] gap-y-3 sm:grid-cols-4 sm:py-4">
+          <div className="grid  gap-x-3 bg-black bg-opacity-75 sm:bg-opacity-40 relative py-7 px-8 sm:px-[2vw] gap-y-3 sm:grid-cols-4 sm:py-4">
             <Select
               className="w-full bg-white rounded-sm"
               defaultValue="Traveling From"
@@ -77,7 +77,7 @@ const SearchTrip = () => {
         </div>
       </div>
       <div
-        className={`${sticky ? " blur-sm" : ""} max-w-7xl mx-auto my-6 sm:my-1`}
+        className={`${sticky ? " sm:blur-sm" : ""} max-w-7xl mx-auto my-6 sm:my-1`}
       >
         {/* <div>
           {searchResults.length > 0 ? (
