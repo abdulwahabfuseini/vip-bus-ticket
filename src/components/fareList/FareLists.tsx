@@ -16,13 +16,13 @@ const FareLists = () => {
               <thead>
                 <tr className="bg-gray-100 border-b-2 border-grey">
                   <th className="px-4 uppercase border-2 text-sm text-darkgrey py-5">
-                  Departure
+                    Departure
                   </th>
                   <th className="px-4 uppercase border-2 text-sm text-darkgrey py-5">
                     Arrival
                   </th>
                   <th className="px-4 uppercase border-2  text-sm text-darkgrey py-5">
-                    Price <br /> GHC
+                    Price <br />
                   </th>
                 </tr>
               </thead>
@@ -36,7 +36,7 @@ const FareLists = () => {
                       {fare?.arrival}
                     </td>
                     <td className="px-4  text-center text-sm border-2 text-darkgrey py-6">
-                      {fare?.price}.00
+                      <span className="font-semibold">₵</span> {fare?.price}.00
                     </td>
                   </tr>
                 ))}
@@ -51,13 +51,13 @@ const FareLists = () => {
               <thead>
                 <tr className="bg-gray-100 border-b-2 border-grey">
                   <th className="px-4  text-center uppercase border-2 text-sm text-darkgrey py-5">
-                Departure
+                    Departure
                   </th>
                   <th className="px-4 uppercase border-2   text-center text-sm text-darkgrey py-5">
                     Arrival
                   </th>
                   <th className="px-4 uppercase border-2   text-center text-sm text-darkgrey py-5">
-                    Price <br /> GHC
+                    Price <br />
                   </th>
                 </tr>
               </thead>
@@ -71,7 +71,7 @@ const FareLists = () => {
                       {fare?.arrival}
                     </td>
                     <td className="px-4 text-sm border-2  text-center text-darkgrey py-6">
-                      {fare?.price}.00
+                      <span className="font-semibold">₵</span> {fare?.price}.00
                     </td>
                   </tr>
                 ))}

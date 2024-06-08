@@ -43,24 +43,27 @@ const TripTable = () => {
               {Routes.map((route, index) => (
                 <tr key={index}>
                   <td className="px-4 text-sm border-2 text-darkgrey py-6">
-                    {route?.from}
+                    {route?.departure}
                   </td>
                   <td className="px-4 text-sm border-2 text-darkgrey py-6">
-                    {route?.to}
+                    {route?.arrival}
                   </td>
                   <td className="px-4 text-sm border-2 text-darkgrey py-6">
                     {route?.type}
                   </td>
-                  <td className="px-4 text-sm border-2 text-darkgrey py-6">
-                    {route?.schedule}
+                  <td className="px-4  text-sm border-2 text-darkgrey py-6">
+                    {route?.schedule} <br />
+                    <button className="bg-blue-50 font-semibold py-1 px-2 text-xs rounded-md text-blue-800 border-blue-800 border mt-2">
+                    {route?.time} <span> pm</span>
+                    </button>
                   </td>
                   <td className="px-4 text-sm border-2 text-darkgrey py-6">
-                    GHC {route?.price}.00
+                    <span className="font-semibold">₵ </span> {route?.price}.00
                   </td>
                   <td className="px-4 text-sm border-2 text-darkgrey  py-6">
                     <button
                       onClick={() => setOpenModal(true)}
-                      className="bg-red-500 p-1.5 text-base text-white font-semibold rounded-md"
+                      className="bg-red-500 py-2 px-3 text-sm text-white font-semibold rounded-md"
                     >
                       {route?.ticket}
                     </button>
@@ -75,7 +78,7 @@ const TripTable = () => {
         open={openModal}
         onOk={() => setOpenModal(false)}
         onCancel={() => setOpenModal(false)}
-        width={400}
+        width={1000}
         centered
         footer={null}
       >
@@ -83,21 +86,17 @@ const TripTable = () => {
       </Modal>
       <div className=" sm:hidden">
         {Routes.map((route, index) => (
-          <div
-            key={index}
-            className="border-2 w-full h-72 mb-1.5 relative "
-          >
+          <div key={index} className="border-2 w-full h-72 mb-1.5 relative ">
             <Image
-              src="/images/kente.png"
+              src="/images/kente3.png"
               alt="banner"
               fill
               objectFit="cover"
-             
             />
             <div className="  grid grid-cols-2 py-3 px-4 bg-opacity-70 text-white h-72 bg-black top-0  w-full absolute left-0">
               <div className=" text-2xl font-bold">
-                <h4 className=" ">{route?.from} - </h4>
-                <h4 className=" ">{route?.to}</h4>
+                <h4 className=" ">{route?.departure} - </h4>
+                <h4 className=" ">{route?.arrival}</h4>
                 <span className="text-sm">Air Conditioned</span>
                 <Image
                   src="/images/star.png"
@@ -115,12 +114,12 @@ const TripTable = () => {
                 />
                 <h1 className=" font-semibold py-1">Sunday</h1>
                 <button className="bg-green rounded-sm my-1 pb-[1.2px] text-sm bg-green-500 text-white px-2.5">
-                  4:00 pm
+                  {route?.time} pm
                 </button>
               </div>
               <div className="pt-6 pb-2">
                 <h1>Terminal</h1>
-                <p className=" font-semibold">CIRCLE VIP</p>
+                <p className=" font-semibold uppercase">{route?.terminal}</p>
               </div>
               <div>
                 <Image

@@ -6,6 +6,7 @@ import TripResults from "./TripResults";
 import { DatePicker, Select } from "antd";
 import { Places } from "@/assets/Place";
 import Image from "next/image";
+import { Routes } from "@/assets/Routes";
 
 const SearchTrip = () => {
   const [sticky, setSticky] = useState(false);
@@ -27,13 +28,13 @@ const SearchTrip = () => {
       <div
         className={`${
           sticky
-            ? "sm:fixed sm:top-16 shadow-lg  sm:left-0 sm:right-0 z-40  sm:mx-0 sm:flex justify-center"
+            ? "sm:fixed sm:top-16 shadow-lg w-full bg-black  sm:left-0 sm:right-0 z-40  sm:mx-0"
             : "absolute left-0 right-0 w-full px-4 sm:px-6 -top-12 sm:-top-11"
         } sm:max-w-5xl sm:mx-auto`}
       >
-        <div className="relative w-fulll">
-          <Image src="/images/kente.png" alt="banner" fill objectFit="cover" />
-          <div className="grid w-full gap-x-3 bg-black bg-opacity-60 relative py-5 px-8 sm:px-[2vw] gap-y-3 sm:grid-cols-4 sm:py-4">
+        <div className=" w-fulll relative">
+          <Image src="/images/kente3.png" alt="banner" fill objectFit="cover" />
+          <div className="grid  gap-x-3 bg-black bg-opacity-50 sm:bg-opacity-40 relative py-7 px-8 sm:px-[2vw] gap-y-3 sm:grid-cols-4 sm:py-4">
             <Select
               className="w-full bg-white rounded-sm"
               defaultValue="Traveling From"
@@ -68,33 +69,43 @@ const SearchTrip = () => {
             />
             <button
               style={{ height: 52, fontSize: 18, textAlign: "center" }}
-              className="w-full bg-white rounded-sm text-center font-semibold"
+              className="w-full bg-red-500 text-white rounded-sm text-center font-semibold"
             >
               Search
             </button>
           </div>
         </div>
       </div>
-      <div className="max-w-7xl bg-red-400 px-4 mx-auto border-2">
-        <div>
+      <div
+        className={`${sticky ? " blur-sm" : ""} max-w-7xl mx-auto my-6 sm:my-1`}
+      >
+        {/* <div>
           {searchResults.length > 0 ? (
             <div>
               <h1 className=" font-medium text-left text-lg sm:text-xl">
-                Search Results for{" "}
+                Search Results for <span></span>
                 <span className="text-xl font-bold">&quot;{search}&quot;</span>
               </h1>
-              <div className="">
-                {searchResults.map((book, index) => (
-                  <TripResults key={index} />
-                ))}
-              </div>
+              <div className=""> */}
+        {Routes.slice(0, 1).map((route, index) => (
+          <TripResults
+            key={index}
+            departure={route.departure}
+            arrival={route?.arrival}
+            price={route.price}
+            ticket={route.ticket}
+            time={route.time}
+            terminal={route.terminal}
+          />
+        ))}
+        {/* </div>
             </div>
           ) : (
             <p className="text-xl text-left font-semibold py-6">
-              Search For a book
+              Search For a route
             </p>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );

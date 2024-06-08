@@ -22,3 +22,62 @@
 .movement {
   animation: move 8.5s 1s ease-in-out infinite;
 }
+
+/* Bus container to simulate the dimensions and layout */
+.bus-container {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #333;
+  border-radius: 15px;
+  padding: 10px;
+  background-color: #fff;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.bus-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.seat-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.seat {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #ccc;
+}
+
+.seat.selected {
+  background-color: #28a745;
+  color: white;
+}
+
+.seat.available {
+  background-color: #f8f9fa;
+  color: black;
+}
+
+.aisle {
+  width: 40px;
+  height: 40px;
+}
+
+@media (min-width: 1024px) {
+  .bus-container {
+    max-width: 600px;
+  }
+}
+

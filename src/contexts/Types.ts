@@ -17,10 +17,24 @@ export interface IUser {
   image?: string | null;
 }
 
-
 export type FareProps = {
-   id?: number,
-   from: string,
-   arrival: string,
-   price: number
-}
+  id?: number;
+  from: string;
+  arrival: string;
+  price: number;
+};
+
+export type TicketProps = {
+  id?: number;
+  departure: string;
+  arrival: string;
+  schedule?: string;
+  type?: string;
+  seats?: number;
+  time?: string;
+  arrivalTime?: string;
+  date?: string;
+  terminal?: string;
+  price: number;
+  ticket?: string;
+};

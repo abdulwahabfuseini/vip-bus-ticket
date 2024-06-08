@@ -18,14 +18,13 @@ const MobileNav = () => {
   return (
     <div className="flex sm:hidden">
       <button onClick={openDrawer} className="">
-        <HiMiniBars3BottomRight className="w-8 h-8 " />
+        <HiMiniBars3BottomRight className="w-8 h-9" />
       </button>
       <div>
         <Drawer
           closable={false}
           placement="top"
           open={openNav}
-          height={400}
           onClose={closeDrawer}
           className="z-50 transition-all ease-in text-black"
         >
