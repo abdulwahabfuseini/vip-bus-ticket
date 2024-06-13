@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Button, Card, Checkbox, Form, Input, Steps } from "antd";
 import { toast } from "react-toastify";
-import { FaFlag } from "react-icons/fa";
 import HeadLogo from "../HeadLogo";
 import Link from "next/link";
 import Image from "next/image";

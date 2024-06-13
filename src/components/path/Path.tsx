@@ -15,7 +15,7 @@ const Path = () => {
       <div className="flex sm:items-center sm:flex-row flex-col gap-y-6 justify-between text-gray-500">
         <p className="text-lg sm:text-xl capitalize ">
           available Buses in{" "}
-          <span className=" font-semibold text-black">ACCRA</span>
+          <span className=" font-semibold text-black uppercase">ACCRA</span>
         </p>
         <div>
           <h4 className="text-lg pb-2">Select Region / Station</h4>

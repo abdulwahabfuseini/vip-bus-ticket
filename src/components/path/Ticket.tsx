@@ -39,7 +39,7 @@ const Ticket = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-4">
             {Routes.slice(0, 2).map((ticket) => (
               <div key={ticket.id}>
                 <TicketCard

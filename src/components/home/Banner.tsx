@@ -37,8 +37,9 @@ const Banner = () => {
                 deleteSpeed={50}
               />
             </h1>
-            <p className="text-lg sm:text-xl font-semibold capitalize">
-              Book your ticket with V.I.P and enjoy the best trip
+            <p className="text-lg sm:text-xl font-semibold sm:max-w-xl capitalize">
+              Easily book your bus tickets online. Choose your destination, and
+              enjoy a comfortable journey from Anywhere.
             </p>
           </div>
         </div>

@@ -15,13 +15,13 @@ const FareLists = () => {
             <table className="table-auto min-w-full border-collapse">
               <thead>
                 <tr className="bg-gray-100 border-b-2 border-grey">
-                  <th className="px-4 uppercase border-2 text-sm text-darkgrey py-5">
+                  <th className="px-3 uppercase border-2 text-sm text-darkgrey py-5">
                     Departure
                   </th>
-                  <th className="px-4 uppercase border-2 text-sm text-darkgrey py-5">
+                  <th className="px-3 uppercase border-2 text-sm text-darkgrey py-5">
                     Arrival
                   </th>
-                  <th className="px-4 uppercase border-2  text-sm text-darkgrey py-5">
+                  <th className="px-3 uppercase border-2  text-sm text-darkgrey py-5">
                     Price <br />
                   </th>
                 </tr>
@@ -29,13 +29,13 @@ const FareLists = () => {
               <tbody>
                 {FareReview.slice(0, 29).map((fare) => (
                   <tr key={fare.id}>
-                    <td className="px-4  text-center text-sm border-2 text-darkgrey py-6">
+                    <td className="px-3  text-center text-sm border-2 text-darkgrey py-4">
                       {fare?.from}
                     </td>
-                    <td className="px-4  text-center text-sm border-2 text-darkgrey py-6">
+                    <td className="px-3  text-center text-sm border-2 text-darkgrey py-4">
                       {fare?.arrival}
                     </td>
-                    <td className="px-4  text-center text-sm border-2 text-darkgrey py-6">
+                    <td className="px-3  text-center text-sm border-2 text-darkgrey py-4">
                       <span className="font-semibold">₵</span> {fare?.price}.00
                     </td>
                   </tr>
@@ -50,13 +50,13 @@ const FareLists = () => {
             <table className="table-auto min-w-full border-collapse">
               <thead>
                 <tr className="bg-gray-100 border-b-2 border-grey">
-                  <th className="px-4  text-center uppercase border-2 text-sm text-darkgrey py-5">
+                  <th className="px-3  text-center uppercase border-2 text-sm text-darkgrey py-5">
                     Departure
                   </th>
-                  <th className="px-4 uppercase border-2   text-center text-sm text-darkgrey py-5">
+                  <th className="px-3 uppercase border-2   text-center text-sm text-darkgrey py-5">
                     Arrival
                   </th>
-                  <th className="px-4 uppercase border-2   text-center text-sm text-darkgrey py-5">
+                  <th className="px-3 uppercase border-2   text-center text-sm text-darkgrey py-5">
                     Price <br />
                   </th>
                 </tr>
@@ -64,13 +64,13 @@ const FareLists = () => {
               <tbody>
                 {FareReview.slice(29, 56).map((fare) => (
                   <tr key={fare.id}>
-                    <td className="px-4 text-sm border-2 text-center text-darkgrey py-6">
+                    <td className="px-3 text-sm border-2 text-center text-darkgrey py-4">
                       {fare?.from}
                     </td>
-                    <td className="px-4 text-sm border-2  text-center text-darkgrey py-6">
+                    <td className="px-3 text-sm border-2  text-center text-darkgrey py-4">
                       {fare?.arrival}
                     </td>
-                    <td className="px-4 text-sm border-2  text-center text-darkgrey py-6">
+                    <td className="px-3 text-sm border-2  text-center text-darkgrey py-4">
                       <span className="font-semibold">₵</span> {fare?.price}.00
                     </td>
                   </tr>

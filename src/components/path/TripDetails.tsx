@@ -18,17 +18,15 @@ const seatsLayout = [
 ];
 
 const TripDetails = ({
-  id,
   departure,
   arrival,
   time,
-  seats,
   price,
   date,
-  arrivalTime,
   terminal,
 }: TicketProps) => {
   const [form] = Form.useForm();
+  const [loading, setLoading] = useState(false);
   const [pickup, sePpickup] = useState({
     location: "",
     channel: "",
@@ -62,9 +60,9 @@ const TripDetails = ({
         <span>{time} </span> <span className="uppercase">PM</span>
       </h1>
       <p className="text-2xl font-semibold">Total Fare GHS {price}</p>
-      <div className=" border-2 my-6 p-5 rounded-md h-full grid gap-3 grid-cols-6">
-        <div className=" col-span-2 border-2 p-6 h-full rounded-md">
-          <div className="flex gap-x-4 items-center justify-center flex-wrap">
+      <div className=" border-2 my-6 p-5 rounded-md h-full grid gap-3 sm:grid-cols-6">
+        <div className=" sm:col-span-2 sm:h-[600px] grid-flow-row-dense border-2 p-6 rounded-md">
+          <div className="flex gap-x-4 sm:gap-x-2 lg:gap-x-4 items-center justify-center flex-wrap">
             <div className="flex items-center gap-2">
               <h6 className="w-4 h-4 bg-gray-300"></h6>
               <h1>Booked</h1>
@@ -78,8 +76,8 @@ const TripDetails = ({
               <h1>Available</h1>
             </div>
           </div>
-          <div className="grid grid-cols-4 gap-y-2 mt-8">
-            {seatsLayout.map((row, rowIndex) =>
+          <div className="grid grid-cols-4 gap-y-2 lg:px-7 gap-x-1 mt-8">
+          {seatsLayout.map((row, rowIndex) =>
               row.map((seatNumber, colIndex) => (
                 <div
                   key={`${rowIndex}-${colIndex}`}
@@ -88,23 +86,34 @@ const TripDetails = ({
                   {seatNumber ? (
                     <button
                       onClick={() => handleSeatClick(seatNumber)}
-                      className={` w-10 h-10  border rounded ${
+                      className={`w-10 h-10 bg-center bg-contain bg-no-repeat relative rounded-md ${
                         selectedSeats.includes(seatNumber)
-                          ? "bg-green-800 text-white font-semibold"
-                          : "bg-white border-green-700"
+                          ? "bg-green-600 text-white font-semibold"
+                          : "bg-white border border-green-500"
                       }`}
+                      style={{
+                        backgroundImage: `url('images/seat.png')`,
+                      }}
                     >
-                      {seatNumber}
+                      <span
+                        className={`absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center ${
+                          selectedSeats.includes(seatNumber)
+                            ? "text-red-600 font-bold"
+                            : "text-black"
+                        } text-white font-extrabold`}
+                      >
+                        {seatNumber}
+                      </span>
                     </button>
                   ) : (
-                    <div className="w-8 h-8"></div>
+                    <div className="w-10 h-10"></div>
                   )}
                 </div>
               ))
             )}
           </div>
         </div>
-        <div className=" col-span-3 h-full border-2 rounded-md">
+        <div className=" sm:col-span-4 lg:col-span-3 h-full border-2 rounded-md">
           <h1 className="py-3 px-6 text-base capitalize font-semibold border-b">
             {departure} - {arrival} trip <span>{date}</span> <span>{time}</span>{" "}
           </h1>
@@ -113,7 +122,7 @@ const TripDetails = ({
               <h1>Selected Seats</h1>
               <p>{selectedSeats.join(", ")}</p>
             </div>
-            <Form layout="vertical" className="py-5">
+            <Form layout="vertical" className="py-5" form={form}>
               <Form.Item
                 label="Pickup Location"
                 name="location"
@@ -133,11 +142,13 @@ const TripDetails = ({
               </Form.Item>
               <div>
                 <div className="flex items-center gap-3">
-                  <span className="h-1  bg-gray-100"></span>
-                  <h1 className=" font-semibold">Payment Info</h1>
-                  <span className="h-1  bg-gray-100"></span>
+                  <span className="h-[1.8px]  bg-gray-100"></span>
+                  <h1 className=" font-semibold flex-1 relative ">
+                    Payment Info
+                  </h1>
+                  <span className="h-[1.8px]  bg-gray-100"></span>
                 </div>
-                <div className="grid grid-cols-2 gap-2 my-2">
+                <div className="grid sm:grid-cols-2 gap-2 my-2">
                   <Form.Item
                     label="Mobile Money Channel"
                     name="channel"
@@ -186,12 +197,12 @@ const TripDetails = ({
                   <div key={seatNumber}>
                     <div className="flex items-center gap-3">
                       <span className="h-1 bg-gray-100"></span>
-                      <h1 className="font-semibold">
+                      <h1 className="font-semibold capitalize">
                         Enter passenger details for seat no. {seatNumber}
                       </h1>
                       <span className="h-1 bg-gray-100"></span>
                     </div>
-                    <div className="grid grid-cols-2 gap-2 my-2">
+                    <div className="grid sm:grid-cols-2 gap-2 my-2">
                       <Form.Item
                         label="Passenger Phone Number"
                         name={`passenger_${seatNumber}`}
@@ -264,9 +275,11 @@ const TripDetails = ({
               <Button
                 htmlType="submit"
                 type="primary"
+                disabled={loading}
+                loading={loading}
                 className="bg-red-500 font-semibold h-10 text-white px-4 rounded"
               >
-                Book Now
+                {loading ? "Booking..." : "Book Now"}
               </Button>
             </Form>
           </div>

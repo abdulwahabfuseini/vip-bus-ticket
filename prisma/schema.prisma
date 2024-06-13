@@ -14,22 +14,22 @@ datasource db {
 }
 
 model User {
-  id             String   @id @default(uuid()) @map("_id")
-  firstName      String
-  lastName       String
-  email          String  @unique
-  emailVerified  String?
-  phoneNumber    String  @unique
-  password       String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id            Int         @id @default(autoincrement())
+  firstName     String
+  lastName      String
+  email         String  @unique
+  emailVerified String?
+  phoneNumber   String  @unique
+  password      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
-  accounts       Account[]
+  accounts      Account[]
 }
 
 model Account {
-  id                String  @id @default(uuid()) @map("_id")
-  userId            String
+  id                Int         @id @default(autoincrement())
+  userId            Int
   type              String
   provider          String
   providerAccountId String
@@ -47,7 +47,7 @@ model Account {
 }
 
 model Regions {
-  id             String   @id @default(uuid()) @map("_id")
+  id             Int         @id @default(autoincrement())
   region_id      String
   location       String
   createdAt      DateTime @default(now())
@@ -57,14 +57,14 @@ model Regions {
 }
 
 model Routes {
-  id             String   @id @default(uuid()) @map("_id")
+  id             Int         @id @default(autoincrement())
   from           String
   to             String
   type           String
   price          String
   schedule       String
   ticket         String
-  regionId       String
+  regionId       Int
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
@@ -72,10 +72,27 @@ model Routes {
 }
 
 model Terminal {
-  id             String  @id @default(uuid()) @map("_id")
-  region         Regions @relation(fields: [region_id], references: [id])
-  region_id      String
-  station        String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id            Int         @id @default(autoincrement())
+  region        Regions @relation(fields: [region_id], references: [id])
+  region_id     Int
+  station       String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Hiring {
+  id            Int         @id @default(autoincrement())
+  company       String
+  time          String
+  duration      String
+  address       String
+  pickup        String
+  destination   String
+  typeofbus     String
+  phoneNumber   String
+  email         String
+  buses         String
+  purpose       String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }

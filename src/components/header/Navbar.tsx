@@ -25,7 +25,7 @@ const Navbar = () => {
   return (
     <div
       className={`${
-        sticky ? "fixed  top-0 shadow-indigo-500/20  z-50 " : " relative"
+        sticky ? "fixed  top-0 shadow-indigo-500/20  z-50 shadow-md" : " relative"
       }  px-3 sm:px-6 transition-all ease-in w-full bg-white`}
     >
       <nav className="w-full max-w-7xl h-full mx-auto flex items-center justify-between">

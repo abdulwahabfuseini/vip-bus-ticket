@@ -1,3 +1,4 @@
+import Navbar from "@/components/header/Navbar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +9,10 @@ export const metadata: Metadata = {
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <div>
+      <Navbar />
+      Dashboard
+    </div>
   )
 }
 

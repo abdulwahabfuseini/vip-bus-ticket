@@ -1,5 +1,6 @@
 import Navbar from "@/components/header/Navbar";
 import Banner from "@/components/home/Banner";
+import FaqAccordion from "@/components/home/faq/FaqAccordion";
 import Path from "@/components/path/Path";
 import type { Metadata } from "next";
 
@@ -13,9 +14,10 @@ export default function Home() {
     <div>
       <Navbar />
       <Banner />
-      <div className="h-[500px] max-w-7xl  my-10 mx-auto overflow-auto">
+      <div className="h-[500px] max-w-7xl mt-20 mb-6 sm:my-10 mx-auto overflow-auto">
         <Path />
       </div>
+      <FaqAccordion />
     </div>
   );
 }

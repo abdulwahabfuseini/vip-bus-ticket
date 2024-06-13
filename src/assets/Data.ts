@@ -28,3 +28,25 @@ export const BannerText = [
     text: "Explore new destinations, effortlessly",
   },
 ];
+
+
+export const ContactInfo = [
+  {
+    id: 1,
+    title: "E-mail",
+    icon: "gmail.png",
+    email: "vipjeountransport@gmail.com",
+  },
+  {
+    id: 2,
+    title: "Phone Number",
+    icon: "call.png",
+    phone: "+233 24 526 4999",
+  },
+  {
+    id: 3,
+    title: "Address",
+    icon: "location.png",
+    address: "Accra - Ghana",
+  },
+];
