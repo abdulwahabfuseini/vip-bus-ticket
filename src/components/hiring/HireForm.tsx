@@ -107,7 +107,7 @@ const HireForm = () => {
   };
 
   return (
-    <div>
+    <div className="px-3 sm:px-1">
       <h1 className="text-3xl text-center uppercase">Hire a bus</h1>
       <div className="hidden md:block pt-2">
         <Steps current={currentStep}>

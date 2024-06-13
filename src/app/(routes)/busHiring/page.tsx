@@ -12,7 +12,7 @@ const BusHiring = () => {
   return (
     <div>
       <Navbar />
-      <div className="grid lg:grid-cols-2 gap-10 max-w-7xl mx-auto sm:pt-20 sm:pb-40 py-10 px-3 sm:px-8">
+      <div className="grid lg:grid-cols-2 gap-10 max-w-7xl mx-auto sm:pt-20 sm:pb-40 py-10 px-4 sm:px-8">
         <Hiring />
         <HireForm />
       </div>

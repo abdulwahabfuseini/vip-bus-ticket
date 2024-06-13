@@ -27,7 +27,7 @@ const SearchTrip = () => {
   return (
     <div
       className={`${
-        sticky ? "mx-4" : "w-full h-full px-4   pt-72 sm:pt-24 pb-6 relative"
+        sticky ? "mx-4" : "w-full h-full px-4   pt-80 sm:pt-24 pb-6 relative"
       }`}
     >
       <div
@@ -45,8 +45,8 @@ const SearchTrip = () => {
             objectFit="cover"
             className=" "
           />
-          <div className="bg-black bg-opacity-65 rounded-lg sm:bg-opacity-60 relative py-7 px-8 sm:px-[2vw] sm:py-4">
-            <h2 className="text-2xl text-white font-semibold mb-4 font-mono">
+          <div className="bg-black bg-opacity-70 rounded-lg sm:bg-opacity-60 relative py-7 px-6 sm:px-[2vw] sm:py-4">
+            <h2 className="text-xl sm:text-2xl text-white font-semibold mb-4 font-mono">
               Book Your Bus Ticket
             </h2>
             <Form

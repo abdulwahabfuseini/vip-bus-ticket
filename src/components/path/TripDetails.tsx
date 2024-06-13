@@ -60,8 +60,8 @@ const TripDetails = ({
         <span>{time} </span> <span className="uppercase">PM</span>
       </h1>
       <p className="text-2xl font-semibold">Total Fare GHS {price}</p>
-      <div className=" border-2 my-6 p-5 rounded-md h-full grid gap-3 sm:grid-cols-6">
-        <div className=" sm:col-span-2 sm:h-[600px] grid-flow-row-dense border-2 p-6 rounded-md">
+      <div className=" sm:border-2 my-6 p-3 sm:p-5 rounded-md h-full grid gap-3 sm:grid-cols-6">
+        <div className=" sm:col-span-2 sm:h-[600px] border-2 p-6 rounded-md">
           <div className="flex gap-x-4 sm:gap-x-2 lg:gap-x-4 items-center justify-center flex-wrap">
             <div className="flex items-center gap-2">
               <h6 className="w-4 h-4 bg-gray-300"></h6>
@@ -76,7 +76,7 @@ const TripDetails = ({
               <h1>Available</h1>
             </div>
           </div>
-          <div className="grid grid-cols-4 gap-y-2 lg:px-7 gap-x-1 mt-8">
+          <div className="grid grid-cols-4 gap-y-2 px-4 lg:px-7 gap-x-1 mt-8">
           {seatsLayout.map((row, rowIndex) =>
               row.map((seatNumber, colIndex) => (
                 <div

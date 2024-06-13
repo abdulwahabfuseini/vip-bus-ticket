@@ -14,7 +14,7 @@ export default function Home() {
     <div>
       <Navbar />
       <Banner />
-      <div className="h-[500px] max-w-7xl mt-20 mb-6 sm:my-10 mx-auto overflow-auto">
+      <div className="h-[900px] sm:h-[500px] max-w-7xl mt-20 mb-6 sm:my-10 mx-auto overflow-auto">
         <Path />
       </div>
       <FaqAccordion />
