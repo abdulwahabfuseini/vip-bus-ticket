@@ -20,7 +20,7 @@ const SearchTrip = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      return window.scrollY > 200 ? setSticky(true) : setSticky(false);
+      return window.scrollY > 300 ? setSticky(true) : setSticky(false);
     });
   }, []);
 
@@ -33,27 +33,41 @@ const SearchTrip = () => {
       <div
         className={`${
           sticky
-            ? "sm:fixed sm:top-16 shadow-lg w-full bg-black  sm:left-0 sm:right-0 z-40  sm:mx-0"
-            : "absolute left-0 right-0 w-full px-4 sm:px-6 -top-12 sm:-top-20"
-        } sm:max-w-6xl sm:mx-auto`}
+            ? "sm:fixed sm:top-16 shadow-2xl w-full bg-black  sm:left-0 sm:right-0 z-40 sm:max-w-7xl sm:mx-auto"
+            : "absolute left-0 right-0 w-full px-4 sm:px-6 -top-12 sm:-top-20 sm:max-w-6xl sm:mx-auto"
+        } `}
       >
-        <div className=" w-fulll relative rounded-lg overflow-hidden">
+        <div
+          className={`${
+            sticky ? "" : " rounded-lg"
+          } w-fulll relative overflow-hidden`}
+        >
           <Image
             src="/images/kente3.png"
             alt="banner"
             fill
             objectFit="cover"
-            className=" "
+            className={`${sticky ? "rotate-180" : ""}`}
           />
-          <div className="bg-black bg-opacity-70 rounded-lg sm:bg-opacity-60 relative py-7 px-6 sm:px-[2vw] sm:py-4">
+          <div
+            className={`${
+              sticky ? "bg-red-600 shadow-xl" : "bg-black rounded-lg"
+            } py-7 px-6 sm:px-[2vw] sm:py-4 bg-opacity-70  sm:bg-opacity-85 relative`}
+          >
             <h2 className="text-xl sm:text-2xl text-white font-semibold mb-4 font-mono">
               Book Your Bus Ticket
             </h2>
             <Form
               layout="vertical"
-              className="grid gap-2 sm:grid-cols-4 sm:place-content-center items-center"
+              className={`${
+                sticky ? "sm:grid-cols-5" : "sm:grid-cols-4"
+              } grid gap-2  sm:place-content-center items-center`}
             >
-              <div className=" sm:col-span-2 relative grid sm:grid-cols-2">
+              <div
+                className={`${
+                  sticky ? "sm:col-span-3" : " sm:col-span-2"
+                }  relative grid sm:grid-cols-2`}
+              >
                 <Form.Item
                   name="departure"
                   className="text-xl font-semibold"
@@ -65,7 +79,7 @@ const SearchTrip = () => {
                   ]}
                 >
                   <Select
-                    className="w-full custom-select relative bg-white border-2  sm:rounded-tl-md rounded-md sm:rounded-none sm:rounded-bl-md"
+                    className="w-full custom-select relative bg-white border-0 border-r-2  sm:rounded-tl-md rounded-md sm:rounded-none sm:rounded-bl-md"
                     defaultValue="Traveling From"
                     style={{ height: 48, fontSize: 40, textAlign: "left" }}
                     // onChange={handleChange}
@@ -98,7 +112,7 @@ const SearchTrip = () => {
                   ]}
                 >
                   <Select
-                    className="w-full custom-select px-2 bg-white border-2 rounded-md sm:rounded-none sm:border-l-0 sm:border-t-2 sm:border-r-2 sm:border-b-2 sm:rounded-tr-md sm:rounded-br-md"
+                    className="w-full custom-select px-2 bg-white border-2 rounded-md sm:rounded-none sm:border-l-0 sm:border-t-0 sm:border-r-2 sm:border-b-0 sm:rounded-tr-md sm:rounded-br-md"
                     defaultValue="Traveling To"
                     style={{ height: 48, fontSize: 16, textAlign: "left" }}
                     // onChange={handleChange}
@@ -124,7 +138,7 @@ const SearchTrip = () => {
                 ]}
               >
                 <DatePicker
-                  className="w-full text-base border-2 border-gray-200"
+                  className="w-full text-base"
                   style={{ height: 48, fontSize: 16, textAlign: "left" }}
                 />
               </Form.Item>
@@ -132,7 +146,9 @@ const SearchTrip = () => {
                 style={{ height: 48 }}
                 htmlType="submit"
                 type="primary"
-                className="w-full sm:-mt-6 items-center bg-red-500 font-semibold text-lg text-white px-4"
+                className={`${
+                  sticky ? "bg-black" : "bg-red-500"
+                } w-full sm:-mt-6 items-center  font-semibold text-lg text-white px-4`}
               >
                 Search Bus
               </Button>

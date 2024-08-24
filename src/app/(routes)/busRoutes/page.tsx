@@ -1,4 +1,5 @@
-import Navbar from "@/components/header/Navbar";
+import Navbar from "@/components/layouts/header/Navbar";
+import Layouts from "@/components/layouts/Layouts";
 import Path from "@/components/path/Path";
 import type { Metadata } from "next";
 
@@ -9,12 +10,11 @@ export const metadata: Metadata = {
 
 const BusRoutes = () => {
   return (
-    <div>
-      <Navbar />
+    <Layouts>
       <div className="py-4 sm:py-12">
         <Path />
       </div>
-    </div>
+    </Layouts>
   );
 };
 

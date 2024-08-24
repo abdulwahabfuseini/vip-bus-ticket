@@ -37,7 +37,7 @@ const Banner = () => {
                 deleteSpeed={50}
               />
             </h1>
-            <p className="text-lg sm:text-xl font-semibold sm:max-w-xl capitalize">
+            <p className="text-lg sm:text-xl sm:max-w-xl capitalize">
               Easily book your bus tickets online. Choose your destination, and
               enjoy a comfortable journey from Anywhere.
             </p>

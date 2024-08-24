@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="w-full h-full  bg-slate-50">
+      <body className="w-full h-full bg-slate-50">
         <Loading>
           <AuthProvider>{children}</AuthProvider>
         </Loading>

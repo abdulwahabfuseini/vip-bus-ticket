@@ -5,13 +5,12 @@ import { Places } from "@/assets/Place";
 import { Select } from "antd";
 import React, { useState } from "react";
 import TripTable from "./TripTable";
+import HeadTitle from "../HeadTitle";
 
 const Path = () => {
   return (
     <div className="w-full max-w-7xl mx-auto sm:py-5 px-5">
-      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold font-mono">
-        Available Routes
-      </h1>
+      <HeadTitle path="Available Routes" />
       <div className="flex sm:items-center sm:flex-row flex-col gap-y-6 justify-between text-gray-500">
         <p className="text-lg sm:text-xl capitalize ">
           available Buses in{" "}
@@ -34,7 +33,7 @@ const Path = () => {
           </Select>
         </div>
       </div>
-      <div className="my-16">
+      <div className="my-10">
         <TripTable />
       </div>
     </div>

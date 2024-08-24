@@ -13,7 +13,7 @@ const Profile = () => {
   const navigate = useRouter();
 
   return (
-    <div>
+    <div className="pl-4">
       <Image
         src="/images/user.png"
         alt="profile"
@@ -61,23 +61,10 @@ const Profile = () => {
                     <TfiHelpAlt className="text-2xl" />
                     <span>Help / Support</span>
                   </button>
-                  <button className="flex items-center gap-3 hover:bg-gray-200 text-base font-semibold border-b p-2">
-                    {/* <Image
-                      src="/images/bin.png"
-                      alt="logo"
-                      width={24}
-                      height={24}
-                      priority
-                      quality={100}
-                      className=" object-contain"
-                      loading="eager"
-                    /> */}
-                    <RiAccountPinCircleFill className="text-2xl" />
-                    <span>Cart</span>
-                  </button>
+                 
                   <button
                     onClick={() => navigate.push("/terms")}
-                    className="flex items-center gap-3 hover:bg-gray-200 text-base font-semibold p-2"
+                    className="flex items-center gap-3 border-b hover:bg-gray-200 text-base font-semibold p-2"
                   >
                     <BiLogOut className="text-2xl" />
                     <span>Terms & Conditions</span>

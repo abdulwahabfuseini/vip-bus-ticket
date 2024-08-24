@@ -18,9 +18,9 @@ const TripResults = ({
 
   return (
     <div>
-      <div className="border-2 w-full h-72 sm:h-32 relative overflow-hidden">
+      <div className="border-2 w-full h-72 sm:h-32 relative overflow-hidden rounded-lg">
         <Image src="/images/kente3.png" alt="banner" fill objectFit="cover" className=" rotate-180" />
-        <div className="grid grid-cols-2 gap-x-1 sm:grid-cols-5 sm:place-content-center sm:place-items-center  py-3 px-4 sm:px-6 bg-opacity-70 sm:bg-opacity-60 text-white h-72 sm:h-32 bg-black top-0  w-full absolute left-0">
+        <div className="grid grid-cols-2 gap-x-1 sm:grid-cols-5 sm:place-content-center sm:place-items-center  py-3 px-4 sm:px-6 bg-opacity-70 sm:bg-opacity-85 text-white h-72 sm:h-32 bg-black top-0  w-full absolute left-0">
           <div>
             <div className=" text-2xl flex flex-col sm:flex-row sm:items-center gap-x-2 font-bold">
               <h4 className=" ">
@@ -29,7 +29,7 @@ const TripResults = ({
               <span className="hidden sm:block">-</span>
               <h4 className=" ">{arrival}</h4>
             </div>
-            <span className="text-sm">Air Conditioned</span>
+            <span className="text-sm font-semibold">Air Conditioned</span>
           </div>
           <div>
             <Image src="/images/clock.png" alt="star" width={25} height={25} />

@@ -1,20 +1,17 @@
 import React from "react";
+import HeadTitle from "../HeadTitle";
 
 const Hiring = () => {
   return (
     <div>
-       <h1 className="text-xl font-semibold text-red-500 pb-1.5">
-        VIP Jeoun Transport
-      </h1>
-      <h1 className=" capitalize font-semibold text-3xl sm:text-4xl font-mono">
-       Bus hiring Services
-      </h1>
+      <HeadTitle path=" Bus hiring Services" />
       <p className="py-2 text-base lg:w-5/6">
         These Services are designed to cater to various needs and events,
         providing comfortable and reliable transportation solutions to
-        individuals and groups. <strong>VIP Jeoun Transport Company Limited</strong>  is one of
-        the leading transportation in Ghana, with a strong reputation for
-        safety, comfort and reliability
+        individuals and groups.{" "}
+        <strong>VIP Jeoun Transport Company Limited</strong> is one of the
+        leading transportation in Ghana, with a strong reputation for safety,
+        comfort and reliability
       </p>
       <div className="py-4 ">
         <h3 className="font-medium  sm:text-xl">Online Bus Hiring Services:</h3>

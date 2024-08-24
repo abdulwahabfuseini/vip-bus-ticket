@@ -14,7 +14,7 @@ export default function FaqAccordion() {
   const handleOpen = (value: number) => setOpen(open === value ? 0 : value);
 
   return (
-    <div className="p-3 sm:px-10 max-w-5xl cursor-pointer mx-auto">
+    <div className="p-3 sm:px-10 max-w-6xl cursor-pointer mx-auto mb-10">
       <h1 className="text-5xl mb-4 uppercase font-semibold font-mono">Faqs</h1>
       <div>
         <Accordion open={open === 1} className="mb-2 rounded-lg">
@@ -24,7 +24,7 @@ export default function FaqAccordion() {
               open === 1 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
             }`}
           >
-            <div className="flex items-center justify-between  w-full text-xl py-4 px-2 sm:px-6">
+            <div className="flex items-center justify-between  w-full sm:text-xl py-4 px-2 sm:px-6">
               <h1>How can I book a bus ticket online?</h1>
               <button>
                 {open === 1 ? <FaChevronUp /> : <FaChevronDown />}
@@ -61,7 +61,7 @@ export default function FaqAccordion() {
               open === 2 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
             }`}
           >
-            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full text-xl">
+            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
               <h1>
                 What payment methods are accepted for booking bus tickets?
               </h1>
@@ -83,7 +83,7 @@ export default function FaqAccordion() {
               </li>
               <li>
                 <strong>Example:</strong> You can use MTN Mobile Money by
-                selecting it as the payment option at checkout and following the
+                selecting it as the payment option at checkout and follow the
                 instructions to complete the transaction.
               </li>
             </ul>
@@ -96,7 +96,7 @@ export default function FaqAccordion() {
               open === 3 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
             }`}
           >
-            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full text-xl">
+            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
               <h1>Can I cancel or change my bus ticket booking?</h1>
               <button>
                 {open === 3 ? <FaChevronUp /> : <FaChevronDown />}
@@ -133,7 +133,7 @@ export default function FaqAccordion() {
               open === 4 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
             }`}
           >
-            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full text-xl">
+            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
               <h1>Will I receive a confirmation after booking a ticket?</h1>
               <button>
                 {open === 4 ? <FaChevronUp /> : <FaChevronDown />}
@@ -167,7 +167,7 @@ export default function FaqAccordion() {
               open === 5 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
             }`}
           >
-            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full text-xl">
+            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
               <h1>
                 What should I do if I do not receive my booking confirmation?
               </h1>
@@ -204,7 +204,7 @@ export default function FaqAccordion() {
               open === 6 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
             }`}
           >
-            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full text-xl">
+            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
               <h1>Is it necessary to print the ticket?</h1>
               <button>
                 {open === 6 ? <FaChevronUp /> : <FaChevronDown />}
@@ -238,7 +238,7 @@ export default function FaqAccordion() {
               open === 7 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
             }`}
           >
-            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full text-xl">
+            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
               <h1>What are the luggage policies for bus travel?</h1>
               <button>
                 {open === 7 ? <FaChevronUp /> : <FaChevronDown />}
@@ -273,7 +273,7 @@ export default function FaqAccordion() {
               open === 8 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
             }`}
           >
-            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full text-xl">
+            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
               <h1>
                 How early should I arrive at the bus terminal before departure?
               </h1>
@@ -309,7 +309,7 @@ export default function FaqAccordion() {
               open === 9 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
             }`}
           >
-            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full text-xl">
+            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
               <h1>Are there discounts available for group bookings?</h1>
               <button>
                 {open === 9 ? <FaChevronUp /> : <FaChevronDown />}
@@ -344,7 +344,7 @@ export default function FaqAccordion() {
               open === 10 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
             }`}
           >
-            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full text-xl">
+            <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
               <h1>What amenities are provided on the bus?</h1>
               <button>
                 {open === 10 ? <FaChevronUp /> : <FaChevronDown />}

@@ -1,13 +1,12 @@
 import React from "react";
 import { FareReview } from "./FareReview";
 import FareTable from "./FareTable";
+import HeadTitle from "../HeadTitle";
 
 const FareLists = () => {
   return (
     <div className="w-full max-w-7xl mx-auto py-10 md:py-20  px-4 sm:px-5">
-      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold font-mono">
-        Fare Review
-      </h1>
+     <HeadTitle path="Fare Review" />
       <div className="grid grid-auto-fit gap-x-10">
         <div className="py-6">
           <h1 className="text-2xl  font-medium">Executive Coaches Fares</h1>

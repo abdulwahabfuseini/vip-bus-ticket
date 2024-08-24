@@ -1,5 +1,6 @@
 import FareLists from "@/components/fareList/FareLists";
-import Navbar from "@/components/header/Navbar";
+import Navbar from "@/components/layouts/header/Navbar";
+import Layouts from "@/components/layouts/Layouts";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,10 +10,9 @@ export const metadata: Metadata = {
 
 const Fare = () => {
   return (
-    <div>
-      <Navbar />
+    <Layouts>
       <FareLists />
-    </div>
+    </Layouts>
   );
 };
 

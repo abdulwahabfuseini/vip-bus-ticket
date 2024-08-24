@@ -59,15 +59,15 @@ const ContactForm = () => {
       <Form form={form} layout="vertical" onFinish={handleSubmit}>
         <Form.Item
           name="company"
-          label="Name/Company"
+          label="Name / Company"
           className="text-lg font-semibold"
           rules={[{ required: true, message: "Please Field is required" }]}
         >
           <Input
             type="text"
             name="company"
-            placeholder="Enter Name/ Company"
-            className="h-11 text-base "
+            placeholder="Enter Name / Company"
+            className="h-11 text-base"
             value={formData.fullName}
             onChange={(e) =>
               setFormData({
@@ -90,7 +90,7 @@ const ContactForm = () => {
             type="email"
             name="email"
             placeholder="Eg: myname@gmail.com"
-            className="h-11 text-base "
+            className="h-11 text-base"
             value={formData.email}
             onChange={(e) =>
               setFormData({
@@ -118,7 +118,7 @@ const ContactForm = () => {
           <Input
             type="tel"
             prefix={
-              <button className="flex items-center gap-2 border-r-2 pr-1 mr-1 border-gray-300">
+              <button className="flex items-center gap-2 border-r-2 pr-1.5 mr-1 border-gray-300">
                 <Image
                   src="/images/ghana.png"
                   alt="flag"

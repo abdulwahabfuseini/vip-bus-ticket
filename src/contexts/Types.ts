@@ -43,7 +43,6 @@ export type AccordionBodyProps = {
   open?: boolean;
 };
 
-
 export type FieldType = {
   username?: string;
   password?: string;
@@ -83,4 +82,8 @@ export type TicketProps = {
   terminal?: string;
   price: number;
   ticket?: string;
+};
+
+export type PathProps = {
+  path: string;
 };

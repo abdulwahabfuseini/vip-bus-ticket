@@ -1,14 +1,14 @@
-import Conditions from '@/components/conditons/Conditions'
-import Navbar from '@/components/header/Navbar'
-import React from 'react'
+import Conditions from "@/components/conditons/Conditions";
+import Navbar from "@/components/layouts/header/Navbar";
+import Layouts from "@/components/layouts/Layouts";
+import React from "react";
 
 const Terms = () => {
   return (
-    <div>
-      <Navbar />
+    <Layouts>
       <Conditions />
-    </div>
-  )
-}
+    </Layouts>
+  );
+};
 
-export default Terms
+export default Terms;
