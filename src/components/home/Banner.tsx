@@ -17,7 +17,7 @@ const Banner = () => {
         />
         <div className="w-full bg-gray-800 px-3  absolute left-0 right-0 bg-opacity-60 h-72  md:h-96 text-center">
           <div className="grid place-content-center text-white place-items-center w-full h-full">
-            <h1 className="text-2xl sm:text-4xl font-mono lg:text-5xl sm:py-6 capitalize h-[12vh] sm:h-[11vh] font-semibold">
+            <h1 className="text-2xl sm:text-4xl font-mono lg:text-5xl capitalize h-[12vh] sm:h-[11vh] font-semibold">
               <Typewriter
                 words={[
                   "Plan Your Trip, Book Your Ticket",

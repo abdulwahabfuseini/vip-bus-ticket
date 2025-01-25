@@ -1,7 +1,7 @@
 import Navbar from "@/components/layouts/header/Navbar";
 import Banner from "@/components/home/Banner";
 import FaqAccordion from "@/components/home/faq/FaqAccordion";
-import Path from "@/components/path/Path";
+import Path from "@/components/availablePath/AvailablePath";
 import type { Metadata } from "next";
 import Layouts from "@/components/layouts/Layouts";
 

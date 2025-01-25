@@ -20,8 +20,8 @@ export default function FaqAccordion() {
         <Accordion open={open === 1} className="mb-2 rounded-lg">
           <AccordionHeader
             onClick={() => handleOpen(1)}
-            className={`bg-white shadow-md px-3 w-full transition-colors flex items-center justify-between ${
-              open === 1 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
+            className={`bg-white shadow-md px-3 hover:bg-red-100 hover:rounded-md w-full transition-colors flex items-center justify-between ${
+              open === 1 ? "text-blue-500 hover:!text-blue-700 font-bold" : "font-semibold"
             }`}
           >
             <div className="flex items-center justify-between  w-full sm:text-xl py-4 px-2 sm:px-6">
@@ -57,8 +57,8 @@ export default function FaqAccordion() {
         <Accordion open={open === 2} className="mb-2 rounded-lg">
           <AccordionHeader
             onClick={() => handleOpen(2)}
-            className={`bg-white shadow-md px-3 transition-colors flex items-center justify-between ${
-              open === 2 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
+            className={`bg-white shadow-md px-3 hover:bg-red-100 hover:rounded-md transition-colors flex items-center justify-between ${
+              open === 2 ? "text-blue-500 hover:!text-blue-700 font-bold" : "font-semibold"
             }`}
           >
             <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
@@ -92,8 +92,8 @@ export default function FaqAccordion() {
         <Accordion open={open === 3} className="mb-2 rounded-lg">
           <AccordionHeader
             onClick={() => handleOpen(3)}
-            className={`bg-white shadow-md px-3 w-full transition-colors flex items-center justify-between ${
-              open === 3 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
+            className={`bg-white shadow-md px-3 hover:bg-red-100 hover:rounded-md w-full transition-colors flex items-center justify-between ${
+              open === 3 ? "text-blue-500 hover:!text-blue-700 font-bold" : "font-semibold"
             }`}
           >
             <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
@@ -129,8 +129,8 @@ export default function FaqAccordion() {
         <Accordion open={open === 4} className="mb-2 rounded-lg">
           <AccordionHeader
             onClick={() => handleOpen(4)}
-            className={`bg-white shadow-md px-3 transition-colors flex items-center justify-between ${
-              open === 4 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
+            className={`bg-white shadow-md px-3 hover:bg-red-100 hover:rounded-md transition-colors flex items-center justify-between ${
+              open === 4 ? "text-blue-500 hover:!text-blue-700 font-bold" : "font-semibold"
             }`}
           >
             <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
@@ -163,8 +163,8 @@ export default function FaqAccordion() {
         <Accordion open={open === 5} className="mb-2 rounded-lg">
           <AccordionHeader
             onClick={() => handleOpen(5)}
-            className={`bg-white shadow-md px-3 w-full transition-colors flex items-center justify-between ${
-              open === 5 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
+            className={`bg-white shadow-md px-3 hover:bg-red-100 hover:rounded-md w-full transition-colors flex items-center justify-between ${
+              open === 5 ? "text-blue-500 hover:!text-blue-700 font-bold" : "font-semibold"
             }`}
           >
             <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
@@ -200,8 +200,8 @@ export default function FaqAccordion() {
         <Accordion open={open === 6} className="mb-2 rounded-lg">
           <AccordionHeader
             onClick={() => handleOpen(6)}
-            className={`bg-white shadow-md px-3 transition-colors flex items-center justify-between ${
-              open === 6 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
+            className={`bg-white shadow-md px-3 hover:bg-red-100 hover:rounded-md transition-colors flex items-center justify-between ${
+              open === 6 ? "text-blue-500 hover:!text-blue-700 font-bold" : "font-semibold"
             }`}
           >
             <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
@@ -234,8 +234,8 @@ export default function FaqAccordion() {
         <Accordion open={open === 7} className="mb-2 rounded-lg">
           <AccordionHeader
             onClick={() => handleOpen(7)}
-            className={`bg-white shadow-md px-3 w-full transition-colors flex items-center justify-between ${
-              open === 7 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
+            className={`bg-white shadow-md px-3 hover:bg-red-100 hover:rounded-md w-full transition-colors flex items-center justify-between ${
+              open === 7 ? "text-blue-500 hover:!text-blue-700 font-bold" : "font-semibold"
             }`}
           >
             <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
@@ -269,8 +269,8 @@ export default function FaqAccordion() {
         <Accordion open={open === 8} className="mb-2 rounded-lg">
           <AccordionHeader
             onClick={() => handleOpen(8)}
-            className={`bg-white shadow-md px-3 transition-colors flex items-center justify-between ${
-              open === 8 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
+            className={`bg-white shadow-md px-3 hover:bg-red-100 hover:rounded-md transition-colors flex items-center justify-between ${
+              open === 8 ? "text-blue-500 hover:!text-blue-700 font-bold" : "font-semibold"
             }`}
           >
             <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
@@ -305,8 +305,8 @@ export default function FaqAccordion() {
         <Accordion open={open === 9} className="mb-2 rounded-lg">
           <AccordionHeader
             onClick={() => handleOpen(9)}
-            className={`bg-white shadow-md px-3 w-full transition-colors flex items-center justify-between ${
-              open === 9 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
+            className={`bg-white shadow-md px-3 hover:bg-red-100 hover:rounded-md w-full transition-colors flex items-center justify-between ${
+              open === 9 ? "text-blue-500 hover:!text-blue-700 font-bold" : "font-semibold"
             }`}
           >
             <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">
@@ -340,8 +340,8 @@ export default function FaqAccordion() {
         <Accordion open={open === 10} className="mb-2 rounded-lg">
           <AccordionHeader
             onClick={() => handleOpen(10)}
-            className={`bg-white shadow-md px-3 transition-colors flex items-center justify-between ${
-              open === 10 ? "text-blue-500 hover:!text-blue-700" : "font-semibold"
+            className={`bg-white shadow-md px-3 hover:bg-red-100 hover:rounded-md transition-colors flex items-center justify-between ${
+              open === 10 ? "text-blue-500 hover:!text-blue-700 font-bold" : "font-semibold"
             }`}
           >
             <div className="flex py-4 px-2 sm:px-6 items-center justify-between w-full sm:text-xl">

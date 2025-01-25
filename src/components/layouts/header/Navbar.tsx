@@ -7,17 +7,18 @@ import React, { useEffect, useState } from "react";
 import MobileNav from "./MobileNav";
 import { useSession } from "next-auth/react";
 import Profile from "./Profile";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const { data: session } = useSession();
   const [sticky, setSticky] = useState(false);
+  const pathname = usePathname(); // Get the current path
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
       return window.scrollY > 200 ? setSticky(true) : setSticky(false);
     });
-  });
-
+  }, []); 
   return (
     <div
       className={`${
@@ -75,14 +76,21 @@ const Navbar = () => {
                       sticky ? "hover:text-black" : "hover:text-red-600"
                     } pl-4`}
                   >
-                    <Link href={navItem.path}>{navItem.display}</Link>
+                    <Link 
+                    href={navItem.path}
+                      className={
+                          pathname === navItem.path ? 'underline underline-offset-8 text-red-500' : ''
+                        }
+                    >
+                    {navItem.display}
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
             <div className="flex items-center gap-6">
               <div>
-                {!session ? (
+                {session ? (
                   <div className="flex items-center gap-5 divide-x-2">
                     <Link href="/booking"  className={`${
                       sticky ? "hover:text-black" : "hover:text-red-600"
@@ -92,7 +100,7 @@ const Navbar = () => {
                     <Profile />
                   </div>
                 ) : (
-                  <Link href="/signin" className="text-lg font-semibold border-2 px-3 hover:bg-green-500 hover:text-white py-1.5 rounded-md">
+                  <Link href="/signin" className="text-lg font-semibold border-2 px-3 hover:bg-red-500 hover:text-white py-1.5 rounded-md">
                     Login
                   </Link>
                 )}

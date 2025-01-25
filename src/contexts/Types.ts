@@ -87,3 +87,16 @@ export type TicketProps = {
 export type PathProps = {
   path: string;
 };
+
+export interface Route {
+  from: string;
+  to: string;
+  type: string;
+  schedule: {
+    date: string;
+    time: string;
+  }[];
+  price: number;
+  seats: number;
+  arrival: string;
+}

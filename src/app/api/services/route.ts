@@ -1,20 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/Prismadb";
+import { connectMongoDB } from "@/lib/mongodb";
 
 // Create Hiring
 export const POST = async (req: NextRequest) => {
+  await connectMongoDB(); // Connecting to Mongodb
   try {
     const body = await req.json();
+
     const {
       company,
-      time,
-      duration,
+      email,
+      phoneNumber,
       address,
       pickup,
       destination,
+      duration,
+      time,
       typeofbus,
-      phoneNumber,
-      email,
       buses,
       purpose,
     } = body;
@@ -36,17 +39,17 @@ export const POST = async (req: NextRequest) => {
       return NextResponse.json({ message: "Missing Fields" }, { status: 400 });
     }
 
-    const newItem = await prisma.hiring.create({
+    const BusHiring = await prisma.hiring.create({
       data: {
         company,
-        time,
-        duration,
+        email,
+        phoneNumber,
         address,
         pickup,
         destination,
+        duration,
+        time,
         typeofbus,
-        phoneNumber,
-        email,
         buses,
         purpose,
       },
@@ -55,7 +58,7 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json(
       {
         success: true,
-        data: newItem,
+        data: BusHiring,
         message: "Hiring Created Successfully",
       },
       {
@@ -67,7 +70,13 @@ export const POST = async (req: NextRequest) => {
     );
   } catch (error) {
     console.error("Error creating Hiring:", error);
-    return NextResponse.json({ message: "Database Error" }, { status: 500 });
+    return NextResponse.json(
+      {
+        message: "Database Error",
+        error, // Log the error object
+      },
+      { status: 500 }
+    );
   }
 };
 

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const BusHiring = () => {
   return (
     <Layouts>
-      <div className="grid lg:grid-cols-2 gap-10 max-w-7xl mx-auto  sm:pb-20 py-12 px-4 sm:px-8">
+      <div className="grid lg:grid-cols-2 gap-10 max-w-7xl mx-auto sm:pb-20 py-12 px-4 sm:px-8">
         <Hiring />
         <HireForm />
       </div>

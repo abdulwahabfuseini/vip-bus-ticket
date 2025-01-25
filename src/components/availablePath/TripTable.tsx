@@ -3,8 +3,9 @@
 import { Routes } from "@/assets/Routes";
 import { Modal } from "antd";
 import React, { useState } from "react";
-import Ticket from "./Ticket";
+
 import Image from "next/image";
+import Ticket from "./Ticket";
 
 const TripTable = () => {
   const [loading, setLoading] = useState(false);
@@ -54,7 +55,7 @@ const TripTable = () => {
                   <td className="px-4  text-sm border-2 text-darkgrey py-6">
                     {route?.schedule} <br />
                     <button className="bg-blue-50 font-semibold py-1 px-2 text-xs rounded-md text-blue-800 border-blue-800 border mt-2">
-                    {route?.time} <span> pm</span>
+                      {route?.time} <span> pm</span>
                     </button>
                   </td>
                   <td className="px-4 text-sm border-2 text-darkgrey py-6">
@@ -86,7 +87,10 @@ const TripTable = () => {
       </Modal>
       <div className=" sm:hidden">
         {Routes.map((route, index) => (
-          <div key={index} className="border-2 w-full h-80  mb-1.5 relative overflow-hidden">
+          <div
+            key={index}
+            className="border-2 w-full h-80  mb-1.5 relative overflow-hidden"
+          >
             <Image
               src="/images/kente3.png"
               alt="banner"

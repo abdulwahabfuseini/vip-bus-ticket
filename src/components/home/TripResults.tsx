@@ -3,7 +3,7 @@
 import { Modal } from "antd";
 import Image from "next/image";
 import { useState } from "react";
-import Ticket from "../path/Ticket";
+import Ticket from "../availablePath/Ticket";
 import { TicketProps } from "@/contexts/Types";
 
 const TripResults = ({

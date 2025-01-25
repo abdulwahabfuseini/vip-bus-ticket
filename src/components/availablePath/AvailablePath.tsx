@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import TripTable from "./TripTable";
 import HeadTitle from "../HeadTitle";
 
-const Path = () => {
+const AvailablePath = () => {
   return (
     <div className="w-full max-w-7xl mx-auto sm:py-5 px-5">
       <HeadTitle path="Available Routes" />
@@ -40,4 +40,4 @@ const Path = () => {
   );
 };
 
-export default Path;
+export default AvailablePath;

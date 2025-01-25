@@ -67,7 +67,10 @@ const HireForm = () => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const response = await fetch("/api/auth/register", {
+     
+      console.log("Hiring Details:", hiringDetails);
+
+      const response = await fetch("/api/services", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -102,8 +105,35 @@ const HireForm = () => {
       }
     } catch (error) {
       toast.error("Ooop!!! Something went wrong. Please try again");
+      console.error("Ooop!!! Something went wrong. Please try again");
     }
     setLoading(false);
+  };
+  const handleTimeChange = (time: Dayjs | null, timeString: string | string[]) => {
+      if (timeString && typeof timeString === "string") {
+          setHiringDetails((prev) => ({
+            ...prev,
+            time: timeString,
+          }));
+      } else {
+          setHiringDetails((prev) => ({
+              ...prev,
+              time: "",
+            }));
+      }
+    };
+  const handleDurationChange = (dates: RangeValue) => {
+    if (dates && dates.length === 2) {
+      const [start, end] = dates;
+      if (start && end) {
+        const startDate = start.format("YYYY-MM-DD");
+        const endDate = end.format("YYYY-MM-DD");
+        setHiringDetails((prev) => ({
+          ...prev,
+          duration: `${startDate} to ${endDate}`,
+        }));
+      }
+    }
   };
 
   return (
@@ -181,7 +211,10 @@ const HireForm = () => {
                     disabledDate={disabledDate}
                     style={{ width: "100%", fontSize: 16 }}
                     popupClassName="text-base"
-                    onChange={setValue}
+                    onChange={(dates) => {
+                      setValue(dates);
+                      handleDurationChange(dates);
+                    }}
                     className=" h-12 text-base w-full"
                   />
                 </Form.Item>
@@ -197,6 +230,7 @@ const HireForm = () => {
                     type="text"
                     name="time"
                     className="h-12 w-full text-base"
+                    onChange={handleTimeChange}
                   />
                 </Form.Item>
                 <Form.Item
@@ -211,7 +245,12 @@ const HireForm = () => {
                     className="w-full h-12"
                     defaultValue="Select Bus Type"
                     style={{ fontSize: 16, textAlign: "left" }}
-                    // onChange={handleChange}
+                    onChange={(value) =>
+                      setHiringDetails((prev) => ({
+                        ...prev,
+                        typeofbus: value,
+                      }))
+                    }
                     dropdownStyle={{ fontSize: "16px" }}
                   >
                     <Select.Option value="Executive Coaches ">

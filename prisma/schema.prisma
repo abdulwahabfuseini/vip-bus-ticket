@@ -9,27 +9,27 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id            Int         @id @default(autoincrement())
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
   firstName     String
   lastName      String
-  email         String  @unique
+  email         String     @unique
   emailVerified String?
-  phoneNumber   String  @unique
+  phoneNumber   String     @unique
   password      String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
 
   accounts      Account[]
 }
 
 model Account {
-  id                Int         @id @default(autoincrement())
-  userId            Int
+  id                String     @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String
   type              String
   provider          String
   providerAccountId String
@@ -46,53 +46,58 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-model Regions {
-  id             Int         @id @default(autoincrement())
-  region_id      String
-  location       String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  routes         Routes[]
-  terminal       Terminal[]
-}
-
-model Routes {
-  id             Int         @id @default(autoincrement())
-  from           String
-  to             String
-  type           String
-  price          String
-  schedule       String
-  ticket         String
-  regionId       Int
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-
-  region         Regions  @relation(fields: [regionId], references: [id])
-}
-
-model Terminal {
-  id            Int         @id @default(autoincrement())
-  region        Regions @relation(fields: [region_id], references: [id])
-  region_id     Int
-  station       String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-}
 
 model Hiring {
-  id            Int         @id @default(autoincrement())
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
   company       String
-  time          String
-  duration      String
+  email         String
+  phoneNumber   String
   address       String
   pickup        String
   destination   String
+  duration      String
+  time          String
   typeofbus     String
-  phoneNumber   String
-  email         String
   buses         String
   purpose       String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+}
+
+model City {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String   @unique
+  terminals Terminal[]
+}
+
+model Terminal {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  cityId    String
+  routes    Route[]
+  city   City  @relation(fields: [cityId], references: [id], onDelete: Cascade)
+
+  @@unique([name, cityId])
+}
+
+
+model Route {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  from      String
+  to        String
+  type      String
+  price     Int
+  seats     Int
+  arrival   String
+  terminalId    String
+  schedule  Schedule[]
+  terminal Terminal  @relation(fields: [terminalId], references: [id], onDelete: Cascade)
+}
+
+model Schedule {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  date      String
+  time      String
+  routeId String
+  route  Route  @relation(fields: [routeId], references: [id], onDelete: Cascade)
 }
