@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const AvailableRoutes = () => {
   return (
-    <div className="w-full md:h-screen py-16 md:py-20 px-4 sm:px-8 max-w-xl grid mx-auto">
+    <div className="w-full md:h-screen py-16 md:py-20 px-4 sm:px-8 max-w-lg grid mx-auto">
       <CityTerminalForm />
     </div>
   );

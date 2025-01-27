@@ -4,20 +4,35 @@ import { Modal } from "antd";
 import Image from "next/image";
 import React, { useState } from "react";
 import TripDetails from "./TripDetails";
-import { TicketProps } from "@/contexts/Types";
+import { FormData, ScheduleData } from "@/contexts/Types";
+import moment from "moment";
 
-const TicketCard = ({
+const extractTime = (isoString: string) => {
+  const date = new Date(isoString);
+  const hours = String(date.getUTCHours()).padStart(2, "0");
+  const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+  return `${hours}:${minutes}`;
+};
+
+interface TicketCardProps extends FormData {
+  scheduleItem: ScheduleData;
+}
+const TicketCard: React.FC<TicketCardProps> = ({
   id,
-  departure,
-  arrival,
-  time,
-  seats,
+  from,
+  to,
+  scheduleItem,
   date,
-  price,
-  arrivalTime,
   terminal,
-}: TicketProps) => {
+  type,
+}) => {
   const [openDetail, setOpenDetails] = useState(false);
+  const time = extractTime(scheduleItem.time);
+  const arrivalTime = extractTime(scheduleItem.arrival);
+  const price = scheduleItem.price;
+  const seats = scheduleItem.seats;
+
+  const formattedDate = moment(date).format("dddd MMM Do, YYYY");
 
   return (
     <div>
@@ -29,10 +44,10 @@ const TicketCard = ({
           <Image src="/images/kente3.png" alt="kente3" fill objectFit="cover" />
           <div className="py-2 px-3 flex gap-2 justify-between sm:gap-8 lg:gap-6 bg-black top-0 left-0 absolute w-full h-full bg-opacity-75 text-white rounded-b-lg">
             <button className="bg-slate-100 text-gray-500 rounded-full w-8 h-8 font-semibold sm:text-lg">
-              {id}
+              {seats}
             </button>
-            <div className="grid grid-auto-fit-xs lg:grid-cols-2 gap-y-2  lg:gap-y-3 pb-2 gap-x-4 sm:flex-1">
-              <div className="flex items-center gap-4">
+            <div className="grid grid-auto-fit-xs lg:grid-cols-2 gap-y-2  lg:gap-y-3 pb-2 gap-x-1.5 sm:flex-1">
+              <div className="flex items-center gap-2">
                 <Image
                   src="/images/route.png"
                   alt="road"
@@ -41,19 +56,19 @@ const TicketCard = ({
                 />
 
                 <h1 className=" font-medium capitalize">
-                  <span>{departure}</span> to <span>{arrival}</span>
+                  <span>{from}</span> to <span>{to}</span>
                 </h1>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <Image
                   src="/images/calendar.png"
                   alt="calendar"
                   width={28}
                   height={28}
                 />
-                <h1 className=" font-medium capitalize">{date}</h1>
+                <h1 className=" font-medium capitalize">{formattedDate}</h1>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <Image
                   src="/images/seats.png"
                   alt="seats"
@@ -64,7 +79,7 @@ const TicketCard = ({
                   <span>{seats}</span> Seats available
                 </h1>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <Image
                   src="/images/clock.png"
                   alt="clock"
@@ -92,12 +107,13 @@ const TicketCard = ({
         footer={null}
       >
         <TripDetails
-          departure={departure}
-          arrival={arrival}
+          from={from}
+          to={to}
           price={price}
           time={time}
-          date={date}
+          date={formattedDate}
           terminal={terminal}
+          schedule={[scheduleItem]}
         />
       </Modal>
     </div>

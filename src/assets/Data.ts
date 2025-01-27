@@ -150,83 +150,20 @@ export const cities = [
           {
             from: "Accra",
             to: "Kumasi",
-            type: "bus",
-            price: 150,
-            seats: 34,
-            arrival: "2024-10-27 20:00:00",
+            type: "scheduled",
+            date: "Wednesday",
             schedule: [
               {
-                date: "2024-11-15",
                 time: "08:30:00",
+                seats: 34,
+                price: 150,
+                arrival: "2024-10-27 20:00:00",
               },
               {
-                date: "2024-11-16",
-                time: "18:30:00",
-              },
-            ],
-          },
-          {
-            from: "Accra",
-            to: "Tamale",
-            type: "bus",
-            price: 250,
-            seats: 40,
-            arrival: "2024-10-27 22:00:00",
-            schedule: [
-              {
-                date: "2024-11-17",
-                time: "09:00:00",
-              },
-              {
-                date: "2024-11-18",
-                time: "20:00:00",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        name: "Tema Terminal",
-        routes: [
-          {
-            from: "Tema",
-            to: "Takoradi",
-            type: "bus",
-            price: 180,
-            seats: 38,
-            arrival: "2024-10-28 20:00:00",
-            schedule: [
-              {
-                date: "2024-11-19",
-                time: "07:30:00",
-              },
-              {
-                date: "2024-11-20",
-                time: "20:30:00",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: "Kumasi",
-    terminals: [
-      {
-        name: "Asafo Terminal",
-        routes: [
-          {
-            from: "Kumasi",
-            to: "Accra",
-            type: "bus",
-            price: 170,
-            seats: 34,
-            arrival: "2024-10-28 12:00:00",
-            schedule: [
-              {
-                date: "2024-11-21",
-                time: "12:30:00",
+                time: "08:30:00",
+                seats: 34,
+                price: 150,
+                arrival: "2024-10-27 20:00:00",
               },
             ],
           },
@@ -235,3 +172,5 @@ export const cities = [
     ],
   },
 ];
+
+

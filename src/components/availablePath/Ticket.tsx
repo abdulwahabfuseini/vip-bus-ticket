@@ -2,12 +2,15 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Routes } from "@/assets/Routes";
 import TicketCard from "./TicketCard";
+import { FormData } from "@/contexts/Types";
 
-const Ticket = () => {
+interface Props {
+  routes: FormData[];
+}
+
+const Ticket: React.FC<Props> = ({ routes }) => {
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -16,10 +19,6 @@ const Ticket = () => {
 
   return (
     <div>
-      <h1 className="text-xl sm:text-3xl capitalize py-6 sm:py-4 sm: font-bold">
-        select departure time for your <span>Accra</span> to{" "}
-        <span>Kumasi </span>trip
-      </h1>
       <div>
         {loading ? (
           <div className="relative h-60 flex items-center justify-center flex-col">
@@ -39,20 +38,22 @@ const Ticket = () => {
             </div>
           </div>
         ) : (
-          <div className="grid sm:grid-cols-2 gap-4">
-            {Routes.slice(0, 2).map((ticket) => (
+          <div>
+            {routes.map((ticket) => (
               <div key={ticket.id}>
-                <TicketCard
-                  id={ticket?.id}
-                  departure={ticket?.departure}
-                  arrival={ticket?.arrival}
-                  price={ticket?.price}
-                  time={ticket?.time}
-                  arrivalTime={ticket?.arrivalTime}
-                  date={ticket?.date}
-                  seats={ticket?.seats}
-                  terminal={ticket?.terminal}
-                />
+                <h1 className="text-xl sm:text-3xl  py-6 sm:py-4 sm: font-bold">
+                  Select Departure Time for your <span>{ticket?.from}</span> to{" "}
+                  <span>{ticket?.to}</span> {" "}trip
+                </h1>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {ticket.schedule.map((schedule, index) => (
+                    <TicketCard
+                      {...ticket}
+                      scheduleItem={schedule}
+                      key={index}
+                    />
+                  ))}
+                </div>
               </div>
             ))}
           </div>

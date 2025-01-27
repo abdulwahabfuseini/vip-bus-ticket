@@ -1,8 +1,19 @@
 "use client";
 
-import { TicketProps } from "@/contexts/Types";
+import { FormData, ScheduleData, TerminalData } from "@/contexts/Types";
 import { Button, Checkbox, Form, Input, Select } from "antd";
 import React, { useState } from "react";
+
+
+interface Props {
+  from: string;
+  to: string;
+  price: number;
+  time: string;
+  date: string;
+  terminal: TerminalData;
+  schedule: ScheduleData[];
+}
 
 const seatsLayout = [
   [1, 2, null, 3],
@@ -17,14 +28,15 @@ const seatsLayout = [
   [28, 29, 30, 31],
 ];
 
-const TripDetails = ({
-  departure,
-  arrival,
-  time,
-  price,
-  date,
-  terminal,
-}: TicketProps) => {
+const TripDetails: React.FC<Props> = ({
+    from,
+    to,
+    schedule,
+    date,
+    terminal,
+    time,
+    price,
+}) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [pickup, sePpickup] = useState({
@@ -51,13 +63,22 @@ const TripDetails = ({
       setSeatDetails((prev) => ({ ...prev, [seatNumber]: {} }));
     }
   };
+  
+  const extractTime = (isoString: string) => {
+    const date = new Date(isoString);
+    const hours = String(date.getUTCHours()).padStart(2, "0");
+    const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
 
   return (
     <div>
       <h1 className="text-xl sm:text-4xl capitalize py-6 sm:py-4 sm: font-semibold">
         Book ticket - departure date: <span>{date} </span>{" "}
         <br className="hidden lg:block" />
-        <span>{time} </span> <span className="uppercase">PM</span>
+       { schedule && schedule.map((s, index) => (
+          <span key={index}> {extractTime(s.time)} PM</span>
+        ))}
       </h1>
       <p className="text-2xl font-semibold">Total Fare GHS {price}</p>
       <div className=" sm:border-2 my-6 p-3 sm:p-5 rounded-md h-full grid gap-3 sm:grid-cols-6">
@@ -77,7 +98,7 @@ const TripDetails = ({
             </div>
           </div>
           <div className="grid grid-cols-4 gap-y-2 px-4 lg:px-7 gap-x-1 mt-8">
-          {seatsLayout.map((row, rowIndex) =>
+            {seatsLayout.map((row, rowIndex) =>
               row.map((seatNumber, colIndex) => (
                 <div
                   key={`${rowIndex}-${colIndex}`}
@@ -115,8 +136,17 @@ const TripDetails = ({
         </div>
         <div className=" sm:col-span-4 lg:col-span-3 h-full border-2 rounded-md">
           <h1 className="py-3 px-6 text-base capitalize font-semibold border-b">
-            {departure} - {arrival} trip <span>{date}</span> <span>{time}</span>{" "}
-          </h1>
+            {from} - {to} trip <span>{date}</span>
+             </h1>
+           <div className="px-6">
+            {schedule?.map((s, index) => (
+                   <h1 key={index} className=" font-semibold capitalize py-1">
+                   Time: {extractTime(s.time)} {" "}
+                    Arrival Time {extractTime(s.arrival)}
+                </h1>
+               ))}
+           </div>
+
           <div className="p-6">
             <div className=" font-semibold grid gap-3">
               <h1>Selected Seats</h1>
@@ -135,8 +165,8 @@ const TripDetails = ({
                   // onChange={handleChange}
                   dropdownStyle={{ fontSize: "16px" }}
                 >
-                  <Select.Option value={terminal}>
-                    <button className="text-base uppercase">{terminal}</button>
+                  <Select.Option value={terminal.name}>
+                    <button className="text-base uppercase">{terminal.name}</button>
                   </Select.Option>
                 </Select>
               </Form.Item>

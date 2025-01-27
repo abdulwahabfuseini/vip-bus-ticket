@@ -1,42 +1,77 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/Prismadb";
 import { connectMongoDB } from "@/lib/mongodb";
+import moment from "moment";
+
+interface ScheduleCreateInput {
+  time: string;
+  seats: number;
+  price: number;
+  arrival: string;
+  carNumber: string;
+}
+
+interface RouteCreateInput {
+  from: string;
+  to: string;
+  type: string;
+  date: string;
+  terminal: {
+    connect: { id: string };
+  };
+}
 
 // Create Route
 export const POST = async (req: NextRequest) => {
   await connectMongoDB(); // Connecting to MongoDB
   try {
     const body = await req.json();
+    const { routes, terminalId } = body;
 
-    const { from, to, type, price, seats, arrival, schedule, terminalId } = body;
-
-    // Check if any of the required fields are missing
-    if (!from || !to || !type || !price || !seats || !arrival || !schedule || !terminalId) {
+    if (!routes || !terminalId) {
       return NextResponse.json({ message: "Missing Fields" }, { status: 400 });
     }
 
-    const newRoute = await prisma.route.create({
-      data: {
-        from,
-        to,
-        type,
-        price,
-        seats,
-        arrival,
-        schedule: {
-          create: schedule, // Assuming `schedule` is an array of related objects
-        },
-        terminal: {
-          connect: { id: terminalId }, // Connect to the associated terminal
-        },
-      },
-    });
+    const createdRoutes = [];
+    for (const routeData of routes) {
+      const { from, to, type, schedule, date } = routeData;
+      const formatedDate = moment(date).format("YYYY-MM-DD");
+
+      if (!from || !to || !type || !schedule || !formatedDate) {
+        return NextResponse.json(
+          { message: "Missing Fields in Route" },
+          { status: 400 }
+        );
+      }
+
+      const newRoute = await prisma.route.create({
+        data: {
+          from,
+          to,
+          type,
+          date: formatedDate,
+          terminal: {
+            connect: { id: terminalId },
+          },
+          schedule: {
+            create: schedule.map((sched: any) => ({
+              time: sched.time,
+              seats: sched.seats,
+              price: sched.price,
+              arrival: sched.arrival,
+              carNumber: sched.carNumber,
+            })),
+          },
+        } as RouteCreateInput,
+      });
+      createdRoutes.push(newRoute);
+    }
 
     return NextResponse.json(
       {
         success: true,
-        data: newRoute,
-        message: "Route Created Successfully",
+        data: createdRoutes,
+        message: "Routes Created Successfully",
       },
       {
         status: 201,
@@ -46,11 +81,11 @@ export const POST = async (req: NextRequest) => {
       }
     );
   } catch (error) {
-    console.error("Error creating Route:", error);
+    console.error("Error creating Routes:", error);
     return NextResponse.json(
       {
         message: "Database Error",
-        error, // Log the error object
+        error: error,
       },
       { status: 500 }
     );

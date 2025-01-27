@@ -86,9 +86,7 @@ model Route {
   from      String
   to        String
   type      String
-  price     Int
-  seats     Int
-  arrival   String
+  date      String
   terminalId    String
   schedule  Schedule[]
   terminal Terminal  @relation(fields: [terminalId], references: [id], onDelete: Cascade)
@@ -96,8 +94,11 @@ model Route {
 
 model Schedule {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  date      String
-  time      String
+  time      String 
+  seats     Int
+  price     Int
+  arrival   String
+  carNumber String
   routeId String
   route  Route  @relation(fields: [routeId], references: [id], onDelete: Cascade)
 }

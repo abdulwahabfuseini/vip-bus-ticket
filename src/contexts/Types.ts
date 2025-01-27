@@ -88,15 +88,68 @@ export type PathProps = {
   path: string;
 };
 
-export interface Route {
+// export interface Route {
+//   from: string;
+//   to: string;
+//   type: string;
+//   schedule: {
+//     date: string;
+//     time: string;
+//   }[];
+//   price: number;
+//   seats: number;
+//   arrival: string;
+// }
+
+
+export interface TerminalData {
+  id: string;
+  name: string;
+}
+
+export interface CityData {
+  id: string;
+  name: string;
+  terminals: TerminalData[];
+}
+
+export interface ScheduleData {
+  time: string;
+  seats: number;
+  price: number;
+  arrival: string;
+  carNumber: string;
+}
+
+export interface RouteData {
   from: string;
   to: string;
   type: string;
-  schedule: {
-    date: string;
-    time: string;
-  }[];
-  price: number;
+  date: string;
+  schedule: ScheduleData[];
+}
+
+export interface ScheduleData {
+  id: string;
+  time: string;
   seats: number;
+  price: number;
   arrival: string;
+  carNumber: string;
+  routeId: string;
+}
+
+export interface FormData {
+  id: string;
+  from: string;
+  to: string;
+  type: string;
+  date: string;
+  terminalId: string;
+  terminal: {
+    id: string;
+    name: string;
+    cityId: string;
+  };
+  schedule: ScheduleData[];
 }

@@ -79,7 +79,7 @@ const Navbar = () => {
                     <Link 
                     href={navItem.path}
                       className={
-                          pathname === navItem.path ? 'underline underline-offset-8 text-red-500' : ''
+                          pathname === navItem.path ? 'underline underline-offset-8 transition-all text-xl font-bold uppercase text-red-500' : ''
                         }
                     >
                     {navItem.display}

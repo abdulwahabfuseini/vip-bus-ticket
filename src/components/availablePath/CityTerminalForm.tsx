@@ -15,7 +15,6 @@ interface CityData {
 const CityTerminalForm = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
-  // const [terminals, setTerminals] = useState<TerminalData[]>([]);
 
   const onFinish = async (values: any) => {
     setLoading(true);
