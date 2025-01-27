@@ -1,6 +1,5 @@
 import React from "react";
 import { FareReview } from "./FareReview";
-import FareTable from "./FareTable";
 import HeadTitle from "../HeadTitle";
 
 const FareLists = () => {
