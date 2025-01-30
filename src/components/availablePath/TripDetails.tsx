@@ -2,8 +2,8 @@
 
 import { FormData, ScheduleData, TerminalData } from "@/contexts/Types";
 import { Button, Checkbox, Form, Input, Select } from "antd";
-import React, { useState } from "react";
-
+import React, { useState, useMemo } from "react";
+import moment from "moment";
 
 interface Props {
   from: string;
@@ -13,29 +13,18 @@ interface Props {
   date: string;
   terminal: TerminalData;
   schedule: ScheduleData[];
+  totalSeats: number; // Added totalSeats prop
 }
 
-const seatsLayout = [
-  [1, 2, null, 3],
-  [4, 5, null, 6],
-  [7, 8, null, 9],
-  [10, 11, null, 12],
-  [13, 14, null, 15],
-  [16, 17, null, 18],
-  [19, 20, null, 21],
-  [22, 23, null, 24],
-  [25, 26, null, 27],
-  [28, 29, 30, 31],
-];
-
 const TripDetails: React.FC<Props> = ({
-    from,
-    to,
-    schedule,
-    date,
-    terminal,
-    time,
-    price,
+  from,
+  to,
+  schedule,
+  date,
+  terminal,
+  time,
+  price,
+  totalSeats,
 }) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
@@ -50,6 +39,33 @@ const TripDetails: React.FC<Props> = ({
   const [selectedSeats, setSelectedSeats] = useState<number[]>([]);
   const [seatDetails, setSeatDetails] = useState<Record<number, any>>({});
 
+  const seatsLayout = useMemo(() => {
+    const rows: (number | null)[][] = [];
+    const seatsPerRow = totalSeats === 34 ? 4 : 5;
+    const nullPosition = totalSeats === 34 ? 2 : 2; // changed this line to get the correct seats layout
+    let seatCounter = 1;
+    const totalRows = totalSeats === 34 ? 11 : 12; // change this line to get the correct seats layout
+
+    for (let i = 0; i < totalRows; i++) {
+      const row: (number | null)[] = [];
+      for (let j = 0; j < seatsPerRow; j++) {
+        if (
+          (j === nullPosition && totalSeats !== 49) ||
+          (totalSeats === 49 && j === nullPosition && i < 11)
+        ) {
+          row.push(null);
+        } else if (seatCounter <= totalSeats) {
+          row.push(seatCounter++);
+        } else {
+          row.push(null);
+        }
+      }
+      rows.push(row);
+    }
+
+    return rows;
+  }, [totalSeats]);
+
   const handleSeatClick = (seatNumber: number) => {
     if (selectedSeats.includes(seatNumber)) {
       setSelectedSeats(selectedSeats.filter((seat) => seat !== seatNumber));
@@ -63,22 +79,34 @@ const TripDetails: React.FC<Props> = ({
       setSeatDetails((prev) => ({ ...prev, [seatNumber]: {} }));
     }
   };
-  
+
   const extractTime = (isoString: string) => {
-    const date = new Date(isoString);
-    const hours = String(date.getUTCHours()).padStart(2, "0");
-    const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+    const date = moment(isoString);
+    const hours = date.format("HH");
+    const minutes = date.format("mm");
     return `${hours}:${minutes}`;
   };
+
+  // Robust parsing with a fallback, you can pass in the format that your date string is currently in, for instance if is something like "2024-08-29T20:19:00.000Z" you can pass it "YYYY-MM-DDTHH:mm:ss.SSSZ", and that should fix the invalid date error
+  const formattedDate = moment(date, "YYYY-MM-DDTHH:mm:ss.SSSZ").isValid()
+    ? moment(date, "YYYY-MM-DDTHH:mm:ss.SSSZ").format("dddd MMM Do, YYYY")
+    : moment().format("dddd MMM Do, YYYY");
+
+  // Function to get the first schedule time
+  const getFirstScheduleTime = () => {
+    if (schedule && schedule.length > 0) {
+      return extractTime(schedule[0].time);
+    }
+    return "N/A";
+  };
+  console.log("Date Prop:", date);
 
   return (
     <div>
       <h1 className="text-xl sm:text-4xl capitalize py-6 sm:py-4 sm: font-semibold">
-        Book ticket - departure date: <span>{date} </span>{" "}
+        Book ticket - departure date: <span>{formattedDate}</span>{" "}
+        <span>{getFirstScheduleTime()} PM</span>
         <br className="hidden lg:block" />
-       { schedule && schedule.map((s, index) => (
-          <span key={index}> {extractTime(s.time)} PM</span>
-        ))}
       </h1>
       <p className="text-2xl font-semibold">Total Fare GHS {price}</p>
       <div className=" sm:border-2 my-6 p-3 sm:p-5 rounded-md h-full grid gap-3 sm:grid-cols-6">
@@ -136,16 +164,16 @@ const TripDetails: React.FC<Props> = ({
         </div>
         <div className=" sm:col-span-4 lg:col-span-3 h-full border-2 rounded-md">
           <h1 className="py-3 px-6 text-base capitalize font-semibold border-b">
-            {from} - {to} trip <span>{date}</span>
-             </h1>
-           <div className="px-6">
+            {from} - {to} trip <span>{formattedDate}</span>
+          </h1>
+          <div className="px-6">
             {schedule?.map((s, index) => (
-                   <h1 key={index} className=" font-semibold capitalize py-1">
-                   Time: {extractTime(s.time)} {" "}
-                    Arrival Time {extractTime(s.arrival)}
-                </h1>
-               ))}
-           </div>
+              <h1 key={index} className=" font-semibold capitalize py-1">
+                Time: {extractTime(s.time)} Arrival Time{" "}
+                {extractTime(s.arrival)}
+              </h1>
+            ))}
+          </div>
 
           <div className="p-6">
             <div className=" font-semibold grid gap-3">
@@ -166,7 +194,9 @@ const TripDetails: React.FC<Props> = ({
                   dropdownStyle={{ fontSize: "16px" }}
                 >
                   <Select.Option value={terminal.name}>
-                    <button className="text-base uppercase">{terminal.name}</button>
+                    <button className="text-base uppercase">
+                      {terminal.name}
+                    </button>
                   </Select.Option>
                 </Select>
               </Form.Item>

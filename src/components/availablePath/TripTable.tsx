@@ -5,20 +5,22 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Ticket from "./Ticket";
 import { FormData } from "@/contexts/Types";
+import moment from "moment";
 
 interface Props {
   routes: FormData[];
+  selectedDate: moment.Moment | null;
 }
 
-const TripTable: React.FC<Props> = ({ routes }) => {
+const TripTable: React.FC<Props> = ({ routes, selectedDate }) => {
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [selectedRoute, setSelectedRoute] = useState<FormData | null>(null);
 
   const extractTime = (isoString: string) => {
-    const date = new Date(isoString);
-    const hours = String(date.getUTCHours()).padStart(2, "0");
-    const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+    const date = moment(isoString);
+    const hours = date.format("HH");
+    const minutes = date.format("mm");
     return `${hours}:${minutes}`;
   };
 
@@ -26,6 +28,27 @@ const TripTable: React.FC<Props> = ({ routes }) => {
     setSelectedRoute(route);
     setOpenModal(true);
   };
+
+  const getFirstScheduleTime = (route: FormData) => {
+    if (!route.schedule || route.schedule.length === 0) {
+      return null;
+    }
+    const firstScheduleTime = moment(route.schedule[0].time);
+    return firstScheduleTime;
+  };
+
+  const getDayOfWeek = (isoString: string) => {
+    const date = moment(isoString);
+    return date.format("dddd");
+  };
+
+    if (routes.length === 0) {
+    return (
+    <div className="p-4 text-center text-lg text-gray-600">
+        No Available Route For Today
+      </div>
+    )
+   }
 
   return (
     <div>
@@ -58,31 +81,38 @@ const TripTable: React.FC<Props> = ({ routes }) => {
           ) : (
             <tbody>
               {routes.map((route, index) => (
-                <tr key={index}>
-                  <td className="px-4 text-sm border-2 text-darkgrey py-6">
+                <tr key={index} className="border-2">
+                  <td className="px-4 text-sm border-r-2 text-darkgrey py-6">
                     {route?.from}
                   </td>
-                  <td className="px-4 text-sm border-2 text-darkgrey py-6">
+                  <td className="px-4 text-sm border-r-2 text-darkgrey py-6">
                     {route?.to}
                   </td>
-                  <td className="px-4 text-sm border-2 capitalize text-darkgrey py-6">
+                  <td className="px-4 text-sm border-r-2 capitalize text-darkgrey py-6">
                     {route?.type}
                   </td>
-                  <td className="px-4 border-b-2 text-darkgrey py-6 flex items-center gap-x-1.5">
+                  <td className="px-4 border-r-2 text-darkgrey py-6 flex flex-col items-start gap-y-1.5">
+                    {route.schedule && route.schedule.length > 0 && (
+                      <span className="font-semibold text-gray-500 text-sm">
+                        {getDayOfWeek(route.schedule[0].time)}
+                      </span>
+                    )}
+                    <div className="flex gap-x-2">
                     {route.schedule?.map((schedule, index) => (
-                      <React.Fragment key={index}>
-                        <button className="bg-blue-50 font-semibold py-1 px-2 text-xs rounded-md text-blue-800 border-blue-800 border mt-2">
-                          {extractTime(schedule.time)} <span>pm</span>
-                        </button>
-                        <br />
-                      </React.Fragment>
+                      <button
+                        key={index}
+                        className="bg-blue-50 font-semibold py-1 px-2 text-xs rounded-md text-blue-800 border-blue-800 border"
+                      >
+                        {extractTime(schedule.time)} <span>pm</span>
+                      </button>
                     ))}
+                    </div>
                   </td>
-                  <td className="px-4 text-sm border-2 text-darkgrey py-6">
+                  <td className="px-4 text-sm border-r-2 text-darkgrey py-6">
                     <span className="font-semibold">₵ </span>{" "}
                     {route?.schedule && route.schedule[0].price}.00
                   </td>
-                  <td className="px-4 text-sm border-2 text-darkgrey  py-6">
+                  <td className="px-4 text-sm border-r-2 text-darkgrey  py-6">
                     <button
                       onClick={() => handleOpenModal(route)}
                       className="bg-red-500 py-2 px-3 text-sm text-white font-semibold rounded-md"
@@ -100,10 +130,10 @@ const TripTable: React.FC<Props> = ({ routes }) => {
         title={""}
         open={openModal}
         onOk={() => setOpenModal(false)}
-          onCancel={() => {
-            setOpenModal(false);
-            setSelectedRoute(null);
-          }}
+        onCancel={() => {
+          setOpenModal(false);
+          setSelectedRoute(null);
+        }}
         width={1000}
         centered
         footer={null}
@@ -141,7 +171,9 @@ const TripTable: React.FC<Props> = ({ routes }) => {
                   width={25}
                   height={25}
                 />
-                <h1 className=" font-semibold py-1">Sunday</h1>
+                <h1 className=" font-semibold py-1">
+                  {getFirstScheduleTime(route)?.format("dddd")}
+                </h1>
                 {route.schedule?.map((schedule, index) => (
                   <button
                     className="bg-green rounded-sm my-1 pb-[1.2px] text-sm bg-green-500 text-white px-2.5"

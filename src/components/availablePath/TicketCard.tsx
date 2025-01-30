@@ -32,7 +32,7 @@ const TicketCard: React.FC<TicketCardProps> = ({
   const price = scheduleItem.price;
   const seats = scheduleItem.seats;
 
-  const formattedDate = moment(date).format("dddd MMM Do, YYYY");
+  const formattedDate = moment(date).format("ddd MMM Do, YYYY"); // Changed "dddd" to "ddd"
 
   return (
     <div>
@@ -54,19 +54,20 @@ const TicketCard: React.FC<TicketCardProps> = ({
                   width={28}
                   height={28}
                 />
-
                 <h1 className=" font-medium capitalize">
                   <span>{from}</span> to <span>{to}</span>
                 </h1>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 w-full">
                 <Image
                   src="/images/calendar.png"
                   alt="calendar"
                   width={28}
                   height={28}
                 />
-                <h1 className=" font-medium capitalize">{formattedDate}</h1>
+                <h1 className=" font-medium capitalize truncate">
+                  {formattedDate}
+                </h1>
               </div>
               <div className="flex items-center gap-2">
                 <Image
@@ -113,8 +114,7 @@ const TicketCard: React.FC<TicketCardProps> = ({
           time={time}
           date={formattedDate}
           terminal={terminal}
-          schedule={[scheduleItem]}
-        />
+          schedule={[scheduleItem]} totalSeats={seats}        />
       </Modal>
     </div>
   );

@@ -1,17 +1,20 @@
 "use client";
 
 import { DatePicker, Form, message, Select } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import TripTable from "./TripTable";
 import HeadTitle from "../HeadTitle";
 import { FormData } from "@/contexts/Types";
-import moment from "moment";
+import moment, { Moment } from "moment";
 
 const AvailablePath = () => {
   const [routes, setRoutes] = useState<FormData[]>([]);
   const [selectedRoute, setSelectedRoute] = useState<string>("");
   const [currentDate, setCurrentDate] = useState(moment());
-  const [selectedDate, setSelectedDate] = useState<moment.Moment | null>(null);
+  const [selectedDate, setSelectedDate] = useState<moment.Moment | null>(
+    moment()
+  );
+  const [filteredRoutes, setFilteredRoutes] = useState<FormData[]>([]);
 
   useEffect(() => {
     const fetchCities = async () => {
@@ -43,22 +46,52 @@ const AvailablePath = () => {
   };
 
   const disabledDate = (current: any) => {
-      return current && (current < moment().startOf('day') || current > moment().endOf('month'));
-    };
+    return (
+      current &&
+      (current < moment().startOf("day") || current > moment().endOf("month"))
+    );
+  };
 
-    const handleDateChange = (date: moment.Moment | null) => {
+  const handleDateChange = (date: moment.Moment | null) => {
     setSelectedDate(date);
-    };
+  };
+
+    const filterRoutes = useCallback(() => {
+        const filterDate = selectedDate || moment();
+        let filtered;
+        if (!selectedRoute) {
+            filtered = routes.filter((route) =>
+                route.schedule?.some((schedule) => {
+                    const scheduleDate = moment(schedule.time);
+                    return scheduleDate.isSameOrAfter(filterDate, "day");
+                })
+            );
+        } else {
+            filtered = routes.filter((route) => {
+                return (
+                    route.from === selectedRoute &&
+                    route.schedule?.some((schedule) => {
+                        const scheduleDate = moment(schedule.time);
+                        return scheduleDate.isSameOrAfter(filterDate, "day");
+                    })
+                );
+            });
+        }
+        setFilteredRoutes(filtered);
+    }, [selectedDate, selectedRoute, routes]);
+
+  useEffect(() => {
+    filterRoutes();
+  }, [selectedRoute, selectedDate, routes, filterRoutes]);
 
   return (
     <div className="w-full max-w-7xl mx-auto sm:py-5 px-5">
       <HeadTitle path="Available Routes" />
       <div className="flex sm:items-center sm:flex-row flex-col gap-y-6 justify-between text-gray-500">
-        <p className="text-lg sm:text-xl capitalize ">
-          available Buses in {" "}
-          <span className=" font-semibold text-black uppercase">
-             <span>{selectedRoute}</span>
-          </span>
+        <p className="text-lg sm:text-xl capitalize font-semibold">
+          {selectedRoute
+            ? `available Buses in ${selectedRoute}`
+            : "available Buses For Today"}
         </p>
         <div className="w-2/4">
           <Form layout="vertical" className="grid md:grid-cols-2 gap-x-2">
@@ -72,6 +105,7 @@ const AvailablePath = () => {
                 onChange={handleChange}
                 dropdownStyle={{ fontSize: "16px" }}
                 bordered={false}
+                 allowClear
               >
                 {routes.map((place, index) => (
                   <Select.Option key={index} value={place.from}>
@@ -87,17 +121,17 @@ const AvailablePath = () => {
               <DatePicker
                 className="h-11 border-2 w-full bg-white text-black"
                 placeholder={currentDate.format("ddd Do, MMM YYYY")}
-                 disabledDate={disabledDate}
-                  format={"ddd Do, MMM YYYY"}
-                    value={selectedDate}
-                 onChange={handleDateChange}
+                disabledDate={disabledDate}
+                format={"ddd Do, MMM YYYY"}
+                value={selectedDate}
+                onChange={handleDateChange}
               />
             </Form.Item>
           </Form>
         </div>
       </div>
       <div className="my-10">
-        <TripTable routes={routes} />
+        <TripTable routes={filteredRoutes} selectedDate={selectedDate} />
       </div>
     </div>
   );

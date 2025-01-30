@@ -70,7 +70,7 @@ const TripResults = ({
         centered
         footer={null}
       >
-        <Ticket />
+        <Ticket routes={[]} />
       </Modal>
     </div>
   );
